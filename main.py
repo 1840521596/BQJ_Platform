@@ -38,12 +38,13 @@ def out_put_report(arg):
 if __name__ == '__main__':
     # 指定测试用例为当前文件夹下的testcase目录
     os.startfile("startup.bat")
-    # test_dir = methods.project_path
+    time.sleep(2)
+    os.system("ntsd -c q -pn cmd.exe")
     test_dir = './allcaselist'
     discover = unittest.defaultTestLoader.discover(test_dir, pattern='*_test.py')
     time.sleep(2)
     # 输出报告
     out_put_report(discover)
     time.sleep(2)
-    send_mail.send_report()
-    os.system("taskkill /f /t /im cmd.exe")
+    # send_mail.send_report()
+    # os.system("taskkill /f /t /im cmd.exe")
