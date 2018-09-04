@@ -7,7 +7,7 @@ from selenium.webdriver.common.by import By
 
 
 class Quit(Page):
-    position_path = (By.XPATH, '//*[@id="root"]/div/div/div/div[1]/header/div/ul/li[6]')
+    position_path = (By.CSS_SELECTOR, '#root>div>div>div>div.layout>header>div>ul>li.header-images>a')
     quit_button = (By.CSS_SELECTOR, '#root>div>div>div>div.layout>header>div>div:nth-child('
                                     '3)>div.tipContent>p:nth-child(4)>a')
     panel_title = (By.CSS_SELECTOR, ".panel-title")
@@ -40,7 +40,7 @@ class Quit(Page):
         try:
             self.type_input(self.username_loc, username)
         except Exception as msg:
-            return u"异常原因%s" % msg
+            print(u"异常原因%s" % msg)
 
     def type_input_password(self, password):
         """
@@ -50,7 +50,7 @@ class Quit(Page):
         try:
             self.type_input(self.password_loc, password)
         except Exception as msg:
-            return u"异常原因%s" % msg
+            print(u"异常原因%s" % msg)
 
     def get_image_code(self):
         """
@@ -63,7 +63,7 @@ class Quit(Page):
         top = int(element.location['y'])
         right = int(element.location['x'] + element.size['width'])
         bottom = int(element.location['y'] + element.size['height'])
-        print(top, right, bottom, left)
+        # print(top, right, bottom, left)
         # 通过Image处理图像
         im = Image.open(self.original_img)
         im = im.crop((left, top, right, bottom))
@@ -80,7 +80,7 @@ class Quit(Page):
         try:
             self.type_input(self.image_code_loc, verify_code)
         except Exception as msg:
-            return u"异常原因%s" % msg
+            print(u"异常原因%s" % msg)
 
     def click_login_btn(self):
         """
@@ -90,7 +90,7 @@ class Quit(Page):
         try:
             self.click(self.login_btn_loc)
         except Exception as msg:
-            return u"异常原因%s" % msg
+            print(u"异常原因%s" % msg)
 
     def user_login(self, username, password):
         """
@@ -113,13 +113,13 @@ class Quit(Page):
         :return:
         """
         try:
-            time.sleep(15)
-            print("打印当前页面信息" + self.get_current_url())
-            self.click(self.position_path)
-            time.sleep(5)
+            time.sleep(2)
+            # print("打印当前页面信息" + self.get_current_url())
+            self.move_to_element(self.position_path)
+            time.sleep(1)
             self.click(self.quit_button)
         except Exception as msg:
-            return u"print异常原因%s" % msg
+            print(u"异常原因%s" % msg)
 
     def user_quit(self):
         """

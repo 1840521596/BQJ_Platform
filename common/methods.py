@@ -2,7 +2,6 @@
 import os
 import random
 import time
-
 from page.BasePage import Page
 from selenium.webdriver.common.by import By
 # Get relative path
@@ -13,7 +12,7 @@ class CommonMethod(Page):
     main_loc = (By.XPATH, '//*[@id="root"]/div/div/div/div[1]/header/div/ul/li[1]/a')
     protection_client_loc = (By.XPATH, '//*[@id="root"]/div/div/div/div[1]/header/div/ul/li[2]/a')
     copyright_show_loc = (By.XPATH, '//*[@id="root"]/div/div/div/div[1]/header/div/ul/li[3]/a')
-    bqj_main_url = u'https://tsdev.bqj.cn/index.html#/'
+    bqj_main_url = u'https://www.bqj.cn/index.html#/'
     main_title = '版权家-版权服务专家'
 
     @staticmethod
@@ -59,6 +58,7 @@ class CommonMethod(Page):
         """
         try:
             self.click(self.copyright_show_loc)
+            time.sleep(1)
         except Exception as msg:
             return u"异常原因%s" % msg
 

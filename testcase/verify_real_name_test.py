@@ -1,7 +1,7 @@
 # coding=utf-8
 import sys
 import unittest
-from common import methods, verify, myunit
+from common import methods, myunit
 from page.RealNamePage import CreateRealName
 from page.LoginPage import Login
 from page.RegisterPage import Register

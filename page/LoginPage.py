@@ -1,19 +1,20 @@
 # coding:utf-8
 from PIL import Image
 from pytesseract import *
+from common import methods
 from page.BasePage import Page
 from selenium.webdriver.common.by import By
 
 
 class Login(Page):
+    path = methods.project_path
     username_loc = (By.ID, 'usernameInSignInForm')
     password_loc = (By.ID, 'passwordInSignInForm')
     image_code_loc = (By.NAME, 'imageCode')
-    original_img = r'D:\BQJ_Platform\testImage\test.png'
-    image_path = r'D:\BQJ_Platform\testImage\login.png'
+    original_img = path + r'\testImage\test.png'
+    image_path = path + r'\testImage\login.png'
     img_loc = 'dynamic_code_pw'
-    bqj_login_url = u"https://tspassport.bqj.cn/sso/login?backurl=http%3A%2F%2Fwww.bqj.cn%2Fsso%2FafterLogin&sc" \
-                    u"=12589172 "
+    bqj_login_url = u"https://passport.bqj.cn/sso/login?backurl=http%3A%2F%2Fwww.bqj.cn%2Fsso%2FafterLogin&sc=12589172"
     login_btn_loc = (By.CSS_SELECTOR, '#signInForm>input.form_btn')
     login_title = '登录'
     login_message = (By.XPATH, '//*[@id="root"]/div/div/div/div[1]/header/div/ul/li[5]/a/span[1]')
@@ -33,7 +34,7 @@ class Login(Page):
         try:
             self.type_input(self.username_loc, username)
         except Exception as msg:
-            return u"异常原因%s" % msg
+            print(u"异常原因%s" % msg)
 
     def type_input_password(self, password):
         """
@@ -43,7 +44,7 @@ class Login(Page):
         try:
             self.type_input(self.password_loc, password)
         except Exception as msg:
-            return u"异常原因%s" % msg
+            print(u"异常原因%s" % msg)
 
     def get_image_code(self):
         """
@@ -56,7 +57,7 @@ class Login(Page):
         top = int(element.location['y'])
         right = int(element.location['x'] + element.size['width'])
         bottom = int(element.location['y'] + element.size['height'])
-        print(top, right, bottom, left)
+        # print(top, right, bottom, left)
         # 通过Image处理图像
         im = Image.open(self.original_img)
         im = im.crop((left, top, right, bottom))
@@ -73,7 +74,7 @@ class Login(Page):
         try:
             self.type_input(self.image_code_loc, verify_code)
         except Exception as msg:
-            return u"异常原因%s" % msg
+            print(u"异常原因%s" % msg)
 
     def click_login_btn(self):
         """
@@ -83,7 +84,7 @@ class Login(Page):
         try:
             self.click(self.login_btn_loc)
         except Exception as msg:
-            return u"异常原因%s" % msg
+            print(u"异常原因%s" % msg)
 
     def user_login(self, username, password):
         """

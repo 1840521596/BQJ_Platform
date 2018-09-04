@@ -25,7 +25,7 @@ def email_init(report, report_name):
     # 定义附件名称（附件的名称可以随便定义，你写的是什么邮件里面显示的就是什么）
     report_file["Content-Disposition"] = 'attachment; filename=' + report_name
     msg.attach(report_file)  # 添加附件
-    msg['Subject'] = '积分存证接口自动化测试报告:' + report_name  # 邮件标题
+    msg['Subject'] = '版权存证网站自动化测试报告:' + report_name  # 邮件标题
     msg['From'] = gl.email_name  # 发件人
     msg['To'] = ";".join(gl.email_To)  # 收件人列表
     try:

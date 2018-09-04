@@ -17,8 +17,9 @@ report_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
 # 设置发送测试报告的公共邮箱、用户名和密码
 smtp_sever = 'smtp.qq.com'  # 邮箱SMTP服务，各大运营商的smtp服务可以在网上找，然后可以在foxmail这些工具中验正
 email_name = "1840521596@qq.com"  # 发件人名称
-email_password = "ahbwvfnfjqqscgei"  # 发件人登录密码
-email_To = ['1840521596@qq.com', '956586478@qq.com']  # 收件人, 可以发给多个人需要用“分号”隔离开
+email_password = "xdsyceujlmemddci"  # 发件人登录密码
+email_To = ['1840521596@qq.com']  # 收件人, 可以发给多个人需要用“分号”隔离开
+# , '956586478@qq.com'
 
 
 

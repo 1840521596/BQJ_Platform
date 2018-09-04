@@ -64,14 +64,15 @@ import time
 from PIL import Image
 from pytesseract import pytesseract
 from selenium import webdriver
+
 original_img = r'D:\BQJ_Platform\testImage\test.png'
 image_path = r'D:\BQJ_Platform\testImage\login.png'
 img_loc = 'dynamic_code_pw'
-driver = webdriver.Chrome()
 bqj_login_url = u"https://passport.bqj.cn/sso/login?backurl=http%3A%2F%2Fwww.bqj.cn%2Fsso%2FafterLogin&sc=12589172"
 
 
 def get_image_code():
+    driver = webdriver.Chrome()
     # 获取指定元素位置
     driver.get(bqj_login_url)
     driver.maximize_window()
@@ -93,5 +94,15 @@ def get_image_code():
     return str(result)
 
 
+def outer(a):
+    b = 10
+
+    def inner():
+        print(a + b)
+
+    return inner()
+
+
 if __name__ == '__main__':
-    print(get_image_code())
+    # print(get_image_code())
+    outer(5)

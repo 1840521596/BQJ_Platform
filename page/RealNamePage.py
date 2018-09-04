@@ -1,3 +1,5 @@
+# coding:utf-8
+import datetime
 import os
 import time
 from common import methods
@@ -12,6 +14,7 @@ class CreateRealName(Page):
     upload_back_loc = (By.CSS_SELECTOR, '#root>div>div>div>div.account.clearfix>div.account-content>div>div>div:nth-child(2)>div>div>div:nth-child(2)>div.ant-col-18>div:nth-child(2)>div>span>div')
     quick_auth_btn = (By.XPATH, '//*[@id="root"]/div/div/div/div[2]/div[2]/div/div/div[2]/div/div/div[5]/button')
     PATH = methods.project_path
+    timestamp = datetime.datetime.now().strftime("%Y%m%d %H%M%S")
 
     def click_client_detail_btn(self):
         """
@@ -42,11 +45,11 @@ class CreateRealName(Page):
             # 正面证件
             self.click(self.upload_front_loc)
             os.system(self.PATH + r"\front1.exe")
-            time.sleep(3)
+            time.sleep(5)
             # 背面证件
             self.click(self.upload_back_loc)
             os.system(self.PATH + r"\back1.exe")
-            time.sleep(3)
+            time.sleep(5)
         except Exception as msg:
             return u"异常原因%s" % msg
 
@@ -72,13 +75,16 @@ class CreateRealName(Page):
             return u"异常原因%s" % msg
 
     def create_real_name_verify(self):
+        self.get_screen_shoot('立即存证', self.timestamp)
         self.click_client_detail_btn()
+        self.get_screen_shoot('未实名认证弹窗', self.timestamp)
         self.click_go_real_name_btn()
         self.upload_credentials()
-        time.sleep(5)
+        self.get_screen_shoot('上传证件', self.timestamp)
         self.scroll_to_bottom()
         self.click_quick_auth_btn()
-        time.sleep(3)
+        time.sleep(1)
+        self.get_screen_shoot('认证成功', self.timestamp)
 
     # def click_ant_upload_btn(self):
     #     """

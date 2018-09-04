@@ -1,8 +1,10 @@
 # coding:utf-8
+import time
+from selenium.common.exceptions import NoAlertPresentException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
-#
+from selenium.webdriver.common.action_chains import ActionChains
+from common import methods
 # logging.basicConfig(
 #     level=logging.INFO,
 #     format='%(asctime)s %(filename)s[line:%(lineno)d] '
@@ -97,6 +99,7 @@ class Page(object):
     def type_input(self, loc, text):
         try:
             self.find_element(*loc).clear()
+            time.sleep(1)
             self.find_element(*loc).send_keys(text)
         except AssertionError:
             print("%s 页面中未能找到%s元素" % (self, loc))
@@ -108,8 +111,9 @@ class Page(object):
         except AssertionError:
             print("%s 页面中未能找到%s元素" % (self, loc))
 
-    def get_screen_shoot(self, file):
-        self.driver.get_screenshot_as_file(file)
+    def get_screen_shoot(self, file_name, time_stamp):
+        self.driver.get_screenshot_as_file(methods.project_path + '/image/%s %s.png ' % (file_name, time_stamp))
+        time.sleep(2)
 
     def save_screen_shoot(self, file):
         self.driver.save_screenshot(file)
@@ -134,24 +138,31 @@ class Page(object):
 
     def right_click(self, loc):
         loc = self.find_element(*loc)
-        self.action(self.driver).context_click(loc).perform()
+        ActionChains(self.driver).context_click(loc).perform()
 
     def double_click(self, loc):
         loc = self.find_element(*loc)
-        self.action(self.driver).double_click(loc).perform()
+        ActionChains(self.driver).double_click(loc).perform()
 
     def drag_and_drop(self, loc_source, loc_target):
         source = self.find_element(*loc_source)
         target = self.find_element(*loc_target)
-        self.action(self.driver).drag_and_drop(source, target).perform()
+        ActionChains(self.driver).drag_and_drop(source, target).perform()
 
     def move_to_element(self, loc):
         loc = self.find_element(*loc)
-        self.action(self.driver).move_to_element(loc).perform()
+        ActionChains(self.driver).move_to_element(loc).perform()
 
     def click_and_hold(self, loc):
         loc = self.find_element(*loc)
-        self.action(self.driver).click_and_hold(loc).perform()
+        ActionChains(self.driver).click_and_hold(loc).perform()
+
+    def switch_to_alert(self):
+        try:
+            self.driver.switch_to_alert()
+            return True
+        except NoAlertPresentException:
+            return False
 
     def get_title(self):
         return self.driver.title

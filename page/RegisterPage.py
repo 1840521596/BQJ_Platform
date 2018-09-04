@@ -1,5 +1,8 @@
 # coding:utf-8
+import datetime
 import time
+from common import methods
+from common.GetSms import GetSms
 from PIL import Image
 from pytesseract import pytesseract
 from page.BasePage import Page
@@ -7,18 +10,25 @@ from selenium.webdriver.common.by import By
 
 
 class Register(Page):
-    bqj_register_url = u'https://tspassport.bqj.cn/register?backurl=https%3A%2F%2Ftsdev.bqj.cn%2Findex.html&sc=12589172'
+    path = methods.project_path
+    timestamp = datetime.datetime.now().strftime("%Y%m%d %H%M%S")
+    bqj_register_url = u'https://passport.bqj.cn/register?backurl=https%3A%2F%2Ftsdev.bqj.cn%2Findex.html&sc=12589172'
     enterprise_register_loc = (By.XPATH, '/html/body/div/div/div/div/div/ul/li[2]')
     phone_loc = (By.ID, "account4Mobile")
     mail_loc = (By.ID, "account4Email")
-    img_loc = 'dynamic_code_person'
+    reg_img_loc = 'dynamic_code_person'
     verify_loc = (By.ID, "imageCode4Mobile")
     next_loc = (By.CSS_SELECTOR, "#signupForm>input")
     bqj_agreement = (By.XPATH, '//*[@id="signupForm"]/div[3]/div/a/span')
-    personal_register_loc = (By.XPATH, '/html/body/div/div/div/div/div/ul/li')
+    bqj_create_success_loc = (By.CLASS_NAME, 'bqj_creat_suces')
+    get_active_code_loc = (By.CSS_SELECTOR, '#signupForm>div.phone_write_code.clearfix>p.count_down.count_down_btn')
+    sms_code_loc = (By.ID, 'verifyCode')
+    psw_loc = (By.ID, 'password')
+    psw2_loc = (By.ID, 'password2')
+    quick_register_btn = (By.CLASS_NAME, 'form_btn')
     page_title = '注册'
-    original_img = r'D:\BQJ_Platform\testImage\test.png'
-    image_path = r'D:\BQJ_Platform\testImage\login.png'
+    original_img = path + r'\testImage\reg_test.png'
+    image_path = path + r'\testImage\reg_login.png'
 
     def open_url(self):
         self.verify_open(self.bqj_register_url, self.page_title)
@@ -31,7 +41,7 @@ class Register(Page):
         try:
             self.type_input(self.phone_loc, phone)
         except Exception as msg:
-            return u"异常原因%s" % msg
+            print(u"异常原因%s" % msg)
 
     def type_input_verify(self, verify_num):
         """
@@ -41,7 +51,7 @@ class Register(Page):
         try:
             self.type_input(self.verify_loc, verify_num)
         except Exception as msg:
-            return u"异常原因%s" % msg
+            print(u"异常原因%s" % msg)
 
     def click_next_btn(self):
         """
@@ -51,7 +61,48 @@ class Register(Page):
         try:
             self.click(self.next_loc)
         except Exception as msg:
-            return u"异常原因%s" % msg
+            print(u"异常原因%s" % msg)
+
+    def click_active_code_btn(self):
+        """
+        # 点击获取动态码
+        :return:  返回异常原因
+        """
+        try:
+            self.click(self.get_active_code_loc)
+        except Exception as msg:
+            print(u"异常原因%s" % msg)
+
+    def type_input_sms_code(self, sms_code):
+        """
+        # 输入短信验证码
+        :return:  返回异常原因
+        """
+        try:
+            self.type_input(self.sms_code_loc, sms_code)
+        except Exception as msg:
+            print(u"异常原因%s" % msg)
+
+    def type_input_password(self, password):
+        """
+        # 输入密码
+        :return:  返回异常原因
+        """
+        try:
+            self.type_input(self.psw_loc, password)
+            self.type_input(self.psw2_loc, password)
+        except Exception as msg:
+            print(u"异常原因%s" % msg)
+
+    def click_quick_register(self):
+        """
+        # 点击立即注册
+        :return: 返回异常原因
+        """
+        try:
+            self.click(self.quick_register_btn)
+        except Exception as msg:
+            print(u"异常原因%s" % msg)
 
     def click_enterprise_register_btn(self):
         """
@@ -61,7 +112,7 @@ class Register(Page):
         try:
             self.click(self.enterprise_register_loc)
         except Exception as msg:
-            return u"异常原因%s" % msg
+            print(u"异常原因%s" % msg)
 
     def type_input_email(self, mail):
         """
@@ -71,20 +122,20 @@ class Register(Page):
         try:
             self.type_input(self.mail_loc, mail)
         except Exception as msg:
-            return u"异常原因%s" % msg
+            print(u"异常原因%s" % msg)
 
     def get_image_code(self):
         """
         获取验证码
-        :return:
+        :return:返回验证码结果
         """
         self.driver.save_screenshot(self.original_img)
-        element = self.driver.find_element_by_id(self.img_loc)
+        element = self.driver.find_element_by_id(self.reg_img_loc)
         left = int(element.location['x'])
         top = int(element.location['y'])
         right = int(element.location['x'] + element.size['width'])
         bottom = int(element.location['y'] + element.size['height'])
-        print(top, right, bottom, left)
+        # print(top, right, bottom, left)
         # 通过Image处理图像
         im = Image.open(self.original_img)
         im = im.crop((left, top, right, bottom))
@@ -93,21 +144,29 @@ class Register(Page):
         result = int(img_str[0]) + int(img_str[2])
         return str(result)
 
-    def user_register(self, phone):
+    def user_register(self, phone, password):
         """
         # 定义个人注册入口
         :param phone: # 输入手机号
+        :param password: # 输入密码
         :return:
         """
         self.open_url()
         verify_code = self.get_image_code()
         self.type_input_phone(phone)
         self.type_input_verify(verify_code)
-        time.sleep(1)
+        self.get_screen_shoot('注册首页', self.timestamp)
         self.click_next_btn()
+        self.click_active_code_btn()
+        sms = GetSms()
+        sms_code = sms.judgeCode()
+        time.sleep(2)
+        self.type_input_sms_code(sms_code)
+        self.type_input_password(password)
+        self.get_screen_shoot('注册账号页', self.timestamp)
+        self.click_quick_register()
         time.sleep(1)
-        # text = self.find_elem_text(self.personal_register_loc)
-        # print(text)
+        self.get_screen_shoot('注册完成', self.timestamp)
 
     def enterprise_register(self, mail):
         """
