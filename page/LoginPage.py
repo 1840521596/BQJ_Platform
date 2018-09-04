@@ -34,7 +34,7 @@ class Login(Page):
         try:
             self.type_input(self.username_loc, username)
         except Exception as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def type_input_password(self, password):
         """
@@ -44,7 +44,7 @@ class Login(Page):
         try:
             self.type_input(self.password_loc, password)
         except Exception as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def get_image_code(self):
         """
@@ -74,7 +74,7 @@ class Login(Page):
         try:
             self.type_input(self.image_code_loc, verify_code)
         except Exception as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def click_login_btn(self):
         """
@@ -84,7 +84,7 @@ class Login(Page):
         try:
             self.click(self.login_btn_loc)
         except Exception as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def user_login(self, username, password):
         """

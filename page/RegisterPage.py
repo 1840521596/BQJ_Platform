@@ -41,7 +41,7 @@ class Register(Page):
         try:
             self.type_input(self.phone_loc, phone)
         except Exception as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def type_input_verify(self, verify_num):
         """
@@ -51,7 +51,7 @@ class Register(Page):
         try:
             self.type_input(self.verify_loc, verify_num)
         except Exception as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def click_next_btn(self):
         """
@@ -61,7 +61,7 @@ class Register(Page):
         try:
             self.click(self.next_loc)
         except Exception as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def click_active_code_btn(self):
         """
@@ -71,7 +71,7 @@ class Register(Page):
         try:
             self.click(self.get_active_code_loc)
         except Exception as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def type_input_sms_code(self, sms_code):
         """
@@ -81,7 +81,7 @@ class Register(Page):
         try:
             self.type_input(self.sms_code_loc, sms_code)
         except Exception as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def type_input_password(self, password):
         """
@@ -92,7 +92,7 @@ class Register(Page):
             self.type_input(self.psw_loc, password)
             self.type_input(self.psw2_loc, password)
         except Exception as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def click_quick_register(self):
         """
@@ -102,7 +102,7 @@ class Register(Page):
         try:
             self.click(self.quick_register_btn)
         except Exception as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def click_enterprise_register_btn(self):
         """
@@ -112,7 +112,7 @@ class Register(Page):
         try:
             self.click(self.enterprise_register_loc)
         except Exception as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def type_input_email(self, mail):
         """
@@ -122,7 +122,7 @@ class Register(Page):
         try:
             self.type_input(self.mail_loc, mail)
         except Exception as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def get_image_code(self):
         """

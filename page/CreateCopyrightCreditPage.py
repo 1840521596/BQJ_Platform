@@ -39,7 +39,7 @@ class CreateCopyrightCredit(Page):
         try:
             self.click(self.client_detail_loc)
         except NoSuchElementException as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def click_delete_no_submit_btn(self):
         """
@@ -49,7 +49,7 @@ class CreateCopyrightCredit(Page):
         try:
             self.click(self.delete_no_submit_btn_loc)
         except NoSuchElementException as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def click_continue_edit_btn(self):
         """
@@ -59,7 +59,7 @@ class CreateCopyrightCredit(Page):
         try:
             self.click(self.continue_edit_btn_loc)
         except NoSuchElementException as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def click_ant_upload_btn(self):
         """
@@ -70,7 +70,7 @@ class CreateCopyrightCredit(Page):
             self.click(self.ant_upload_loc)
             os.system(self.PATH + r"\copyright.exe")
         except NoSuchElementException as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def scroll_to_bottom(self):
         """
@@ -81,7 +81,7 @@ class CreateCopyrightCredit(Page):
             js = "var q=document.documentElement.scrollTop=100000"
             self.script(js)
         except Exception as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def scroll_to_top(self):
         """
@@ -93,7 +93,7 @@ class CreateCopyrightCredit(Page):
             self.script(js)
             time.sleep(2)
         except Exception as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def scroll_to_anywhere(self):
         """
@@ -104,7 +104,7 @@ class CreateCopyrightCredit(Page):
             js = "var q=document.documentElement.scrollTop=500"
             self.script(js)
         except Exception as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def type_input_work_name(self):
         """
@@ -114,7 +114,7 @@ class CreateCopyrightCredit(Page):
         try:
             self.type_input(self.copyright_name_loc, '测试版权存证')
         except NoSuchElementException as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def click_next_step_btn(self):
         """
@@ -125,7 +125,7 @@ class CreateCopyrightCredit(Page):
             self.click(self.next_step_btn_loc)
             time.sleep(3)
         except NoSuchElementException as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def click_confirm_info_btn(self):
         """
@@ -136,7 +136,7 @@ class CreateCopyrightCredit(Page):
             self.click(self.commit_confirm_info_loc)
             time.sleep(1)
         except NoSuchElementException as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def get_application_finish_info(self):
         """
@@ -150,7 +150,7 @@ class CreateCopyrightCredit(Page):
             # print(get_application_info)
             return get_application_info
         except NoSuchElementException as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def select_vip_type(self):
         """
@@ -161,7 +161,7 @@ class CreateCopyrightCredit(Page):
             self.click(self.select_vip_purchase_type_loc)
             time.sleep(1)
         except NoSuchElementException as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def click_open_vip_commit_btn(self):
         """
@@ -172,7 +172,7 @@ class CreateCopyrightCredit(Page):
             self.click(self.open_vip_commit_loc)
             time.sleep(1)
         except NoSuchElementException as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def get_vip_purchase_price(self):
         """
@@ -186,7 +186,7 @@ class CreateCopyrightCredit(Page):
             time.sleep(1)
             return get_vip_price
         except NoSuchElementException as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def click_confirm_pay_btn(self):
         """
@@ -197,7 +197,7 @@ class CreateCopyrightCredit(Page):
             self.click(self.confirm_pay_loc)
             time.sleep(1)
         except NoSuchElementException as msg:
-            print(u"异常原因%s" % msg)
+            return "异常原因%s" % msg
 
     def user_create_copyright_credit(self):
         self.click_client_detail_btn()
