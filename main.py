@@ -46,5 +46,5 @@ if __name__ == '__main__':
     # 输出报告
     out_put_report(discover)
     time.sleep(2)
-    # send_mail.send_report()
+    send_mail.send_report()
     # os.system("taskkill /f /t /im cmd.exe")
