@@ -39,7 +39,7 @@ if __name__ == '__main__':
     # 指定测试用例为当前文件夹下的testcase目录
     os.startfile("startup.bat")
     time.sleep(2)
-    os.system("ntsd -c q -pn cmd.exe")
+    # os.system("ntsd -c q -pn cmd.exe")
     test_dir = './allcaselist'
     discover = unittest.defaultTestLoader.discover(test_dir, pattern='*_test.py')
     time.sleep(2)
