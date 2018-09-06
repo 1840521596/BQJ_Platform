@@ -113,7 +113,7 @@ class Page(object):
 
     def get_screen_shoot(self, file_name, time_stamp):
         self.driver.get_screenshot_as_file(methods.project_path + '/image/%s %s.png ' % (file_name, time_stamp))
-        time.sleep(2)
+        time.sleep(1)
 
     def save_screen_shoot(self, file):
         self.driver.save_screenshot(file)

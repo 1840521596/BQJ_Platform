@@ -26,6 +26,7 @@ class Register(Page):
     psw_loc = (By.ID, 'password')
     psw2_loc = (By.ID, 'password2')
     quick_register_btn = (By.CLASS_NAME, 'form_btn')
+    show_error_loc = (By.CLASS_NAME, 'show_error')
     page_title = '注册'
     original_img = path + r'\testImage\reg_test.png'
     image_path = path + r'\testImage\reg_login.png'
@@ -116,7 +117,7 @@ class Register(Page):
 
     def type_input_email(self, mail):
         """
-        :param mail:  # 输入企业邮箱
+        :param mail: # 输入企业邮箱
         :return: 返回异常原因
         """
         try:
@@ -144,6 +145,16 @@ class Register(Page):
         result = int(img_str[0]) + int(img_str[2])
         return str(result)
 
+    @staticmethod
+    def get_sms_code():
+        """
+        获取手机号验证码
+        :return: 返回验证码结果
+        """
+        sms = GetSms()
+        sms_code = sms.judgeCode()
+        return sms_code
+
     def user_register(self, phone, password):
         """
         # 定义个人注册入口
@@ -158,10 +169,8 @@ class Register(Page):
         self.get_screen_shoot('注册首页', self.timestamp)
         self.click_next_btn()
         self.click_active_code_btn()
-        sms = GetSms()
-        sms_code = sms.judgeCode()
-        time.sleep(2)
-        self.type_input_sms_code(sms_code)
+        time.sleep(1)
+        self.type_input_sms_code(self.get_sms_code())
         self.type_input_password(password)
         self.get_screen_shoot('注册账号页', self.timestamp)
         self.click_quick_register()
@@ -182,5 +191,3 @@ class Register(Page):
         time.sleep(1)
         self.click_next_btn()
         time.sleep(1)
-        # text = self.find_elem_text(self.personal_register_loc)
-        # print(text)
