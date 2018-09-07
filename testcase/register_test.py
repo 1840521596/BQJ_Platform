@@ -26,8 +26,9 @@ class Test1UserRegister(myunit.MyTest, Register):
         """测试用户注册成功"""
         phone = self.cf.get('unregister_input', 'user')
         password = self.cf.get('unregister_input', 'pwd')
+        message = self.find_elem_text(self.bqj_create_success_loc)
         self.user_register(phone, password)
-        # self.assertEqual('信息审核', self.get_application_finish_info())
+        self.assertEqual('恭喜账号创建成功！', message)
 
 
 if __name__ == '__main__':

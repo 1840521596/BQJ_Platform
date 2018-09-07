@@ -27,6 +27,7 @@ class Register(Page):
     psw2_loc = (By.ID, 'password2')
     quick_register_btn = (By.CLASS_NAME, 'form_btn')
     show_error_loc = (By.CLASS_NAME, 'show_error')
+    enter_main_loc = (By.CSS_SELECTOR, 'body>div>div>div>div>div>button')
     page_title = '注册'
     original_img = path + r'\testImage\reg_test.png'
     image_path = path + r'\testImage\reg_login.png'
@@ -105,6 +106,16 @@ class Register(Page):
         except Exception as msg:
             return "异常原因%s" % msg
 
+    def click_enter_main_page(self):
+        """
+        点击进入主页
+        :return:
+        """
+        try:
+            self.click(self.enter_main_loc)
+        except Exception as msg:
+            return "异常原因%s" % msg
+
     def click_enterprise_register_btn(self):
         """
         # 点击企业注册按钮
@@ -176,6 +187,7 @@ class Register(Page):
         self.click_quick_register()
         time.sleep(1)
         self.get_screen_shoot('注册完成', self.timestamp)
+        # self.click_enter_main_page()
 
     def enterprise_register(self, mail):
         """
