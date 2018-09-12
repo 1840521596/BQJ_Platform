@@ -72,47 +72,13 @@ class CreateCopyrightCredit(Page):
         except NoSuchElementException as msg:
             return "异常原因%s" % msg
 
-    def scroll_to_bottom(self):
-        """
-        滑动到底部
-        :return:返回异常原因
-        """
-        try:
-            js = "var q=document.documentElement.scrollTop=100000"
-            self.script(js)
-        except Exception as msg:
-            return "异常原因%s" % msg
-
-    def scroll_to_top(self):
-        """
-        滑动到底部
-        :return:返回异常原因
-        """
-        try:
-            js = "var q=document.documentElement.scrollTop=0"
-            self.script(js)
-            time.sleep(2)
-        except Exception as msg:
-            return "异常原因%s" % msg
-
-    def scroll_to_anywhere(self):
-        """
-        滑动到底部
-        :return:返回异常原因
-        """
-        try:
-            js = "var q=document.documentElement.scrollTop=500"
-            self.script(js)
-        except Exception as msg:
-            return "异常原因%s" % msg
-
     def type_input_work_name(self):
         """
         输入作品名称
         :return:
         """
         try:
-            self.type_input(self.copyright_name_loc, '测试版权存证')
+            self.type_input(self.copyright_name_loc, '测试数据，勿动')
         except NoSuchElementException as msg:
             return "异常原因%s" % msg
 
@@ -204,7 +170,7 @@ class CreateCopyrightCredit(Page):
         self.get_screen_shoot("点击立即存证", self.timestamp)
         self.click_ant_upload_btn()
         self.get_screen_shoot("上传作品", self.timestamp)
-        self.scroll_to_anywhere()
+        self.scroll_to_middle()
         self.type_input_work_name()
         self.get_screen_shoot("输入作品名称", self.timestamp)
         self.scroll_to_bottom()
@@ -220,7 +186,7 @@ class CreateCopyrightCredit(Page):
         self.get_screen_shoot("点击立即存证", self.timestamp)
         self.click_ant_upload_btn()
         self.get_screen_shoot("上传作品", self.timestamp)
-        self.scroll_to_anywhere()
+        self.scroll_to_middle()
         self.type_input_work_name()
         self.get_screen_shoot("输入作品名称", self.timestamp)
         self.scroll_to_bottom()
@@ -232,5 +198,3 @@ class CreateCopyrightCredit(Page):
         self.switch_to_window()
         self.get_screen_shoot("开通VIP会员", self.timestamp)
         self.scroll_to_bottom()
-        # self.click_confirm_pay_btn()
-        # self.get_screen_shoot("请完成支付页面", self.timestamp)

@@ -74,14 +74,14 @@ class Page(object):
 
     def find_element(self, *loc):
         try:
-            WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(loc))
+            WebDriverWait(self.driver, 3).until(EC.visibility_of_element_located(loc))
             return self.driver.find_element(*loc)
         except AssertionError:
             print("%s 页面中未能找到%s元素" % (self, loc))
 
     def find_elements(self, *loc):
         try:
-            WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(loc))
+            WebDriverWait(self.driver, 3).until(EC.visibility_of_element_located(loc))
             return self.driver.find_elements(*loc)
         except AssertionError:
             print("%s 页面中未能找到%s元素" % (self, loc))
@@ -91,6 +91,9 @@ class Page(object):
 
     def find_elem_text(self, loc):
         return self.find_element(*loc).text
+
+    def find_elem_attribute(self, loc):
+        return self.find_element(*loc).get_attribute('innerHTML')
 
     # 定义script方法，用于执行js脚本
     def script(self, src):
@@ -117,6 +120,53 @@ class Page(object):
 
     def save_screen_shoot(self, file):
         self.driver.save_screenshot(file)
+
+    def scroll_to_bottom(self):
+        """
+        滑动到底部
+        :return:返回异常原因
+        """
+        try:
+            js = "var q=document.documentElement.scrollTop=100000"
+            self.script(js)
+        except Exception as msg:
+            return "异常原因%s" % msg
+
+    def scroll_to_top(self):
+        """
+        滑动到底部
+        :return:返回异常原因
+        """
+        try:
+            js = "var q=document.documentElement.scrollTop=0"
+            self.script(js)
+            time.sleep(2)
+        except Exception as msg:
+            return "异常原因%s" % msg
+
+    def scroll_to_middle(self):
+        """
+        滑动到中部
+        :return:返回异常原因
+        """
+        try:
+            js = "var q=document.documentElement.scrollTop=600"
+            self.script(js)
+            time.sleep(2)
+        except Exception as msg:
+            return "异常原因%s" % msg
+
+    def scroll_to_more_bottom(self):
+        """
+        滑动到底部多点
+        :return:返回异常原因
+        """
+        try:
+            js = "var q=document.documentElement.scrollTop=1000"
+            self.script(js)
+            time.sleep(2)
+        except Exception as msg:
+            return "异常原因%s" % msg
 
     def switch_to_window(self):
         handles = self.driver.window_handles

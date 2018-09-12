@@ -1,0 +1,46 @@
+# coding=utf-8
+import sys
+import unittest
+import configparser
+from common import methods, myunit
+from page.LoginPage import Login
+from page.CertificateVerifyPage import CertificateVerifyPage
+sys.path.append("./page")
+
+
+class Test6CertificateVerify(myunit.MyTest, methods.CommonMethod, Login, CertificateVerifyPage):
+    PATH = methods.project_path
+    cf = configparser.ConfigParser()
+    cf.read(PATH + "\\login_conf.ini")
+    user = cf.get("Infinite_time_purchase", "user")
+    pwd = cf.get("Infinite_time_purchase", "pwd")
+    user1 = cf.get("correct_input1", "user")
+    pwd1 = cf.get("correct_input1", "pwd")
+
+    def test_certificate_content_verify(self):
+        """测试证书内容核验"""
+        self.user_login(self.user, self.pwd)
+        self.user_certificate_verify()
+        self.assertEqual(self.cdData[0], self.sha256())
+
+    def test_trusted_time_verify(self):
+        """测试可信时间凭证核验"""
+        self.user_login(self.user, self.pwd)
+        self.user_trusted_time_verify()
+        self.assertIn(self.get_certificate_id(), self.get_trusted_time_verify_result())
+
+    def test_user_digital_signature_verify(self):
+        """测试用户数字签名核验"""
+        self.user_login(self.user, self.pwd)
+        self.user_digital_signature_verify()
+        self.assertEqual('1.本次签名有效', self.get_signature_result())
+
+    def test_user_copyright_block_chain_verify(self):
+        """测试版权区块链联盟核验"""
+        self.user_login(self.user, self.pwd)
+        self.user_copyright_block_chain_verify()
+        self.assertEqual(self.get_certificate_value(), self.get_hash_value())
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -2,4 +2,4 @@
 # http://curl.haxx.se/rfc/cookie_spec.html
 # This is a generated file!  Do not edit.
 
-www.106818.com	FALSE	/	FALSE		ASP.NET_SessionId	ircxpi3xcd2o0h55b3d5wj45
+www.106818.com	FALSE	/	FALSE		ASP.NET_SessionId	0qmth355y011t2453cfl3zzh

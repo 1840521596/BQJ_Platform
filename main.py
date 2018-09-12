@@ -10,12 +10,6 @@ sys.path.append("./driver")
 sys.path.append("./allcaselist")
 
 
-def startup():
-    cmd = "java -jar ./driver/selenium-server-standalone-3.8.1.jar"
-    content = os.popen(cmd).read()
-    print(content)
-
-
 def get_log_name():
     now = time.strftime("%Y-%m-%d %H_%M_%S")
     filename = './report/' + now + '_TestReport.html'
@@ -46,5 +40,5 @@ if __name__ == '__main__':
     # 输出报告
     out_put_report(discover)
     time.sleep(2)
-    send_mail.send_report()
+    # send_mail.send_report()
     # os.system("taskkill /f /t /im cmd.exe")
