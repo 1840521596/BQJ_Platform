@@ -11,7 +11,7 @@ import http.cookiejar as cookielib
 from common import methods
 
 project_path = os.path.abspath(os.path.join(os.path.dirname(os.path.split(os.path.realpath(__file__))[0]), '.'))
-c = cookielib.MozillaCookieJar(project_path + "\Cookie.txt")
+c = cookielib.MozillaCookieJar()
 # 先把cookie对象存储为cookiejar的对象
 cookie = ul.HTTPCookieProcessor(c)  # 把cookiejar对象转换为一个handle(句柄)
 opener = ul.build_opener(cookie)  # 建立一个模拟浏览器，需要handle作为参数
@@ -49,7 +49,7 @@ class GetSms:
             '__EVENTARGUMENT': '',
             '__VIEWSTATE': '/wEPDwUKLTUzNTA0NDkzNw9kFgJmD2QWAgIDD2QWAgIBD2QWAgIGDxYCHglpbm5lcmh0bWwFgwHniYjmnYPkv6Hmga/vvJpF5LyB5L+h6YCaLeS8geS4muiQpemUgOS/oeaBr+ezu+e7nyAmbmJzcDsgSUNQ5aSH5qGI77yaPGEgaHJlZj0iaHR0cDovL3d3dy5taWliZWlhbi5nb3YuY24iPuS6rElDUOWkhzEyMDIzMzUx5Y+3PC9hPmQYAQUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFgEFFGN0bDAwJEhvbGRlcjEkSW1hZ2Ux1zmJ0XKwzzwvvRdeu4wrmIIa8vA=',
             '__EVENTVALIDATION': '/wEWBwKOoYT5CwL+wOqsCAL0/u7GDwLe59jTDQK51dqTCgLHy6GnCgLD+LOmCP4nVoq7LlUanvvu67Dgya3Wrr8M',
-            'ctl00$Holder1$pwds': '',
+            'ctl00$Holder1$pwds': 'changyuan',
             'ctl00$Holder1$CorpID': 'SY0204',
             'ctl00$Holder1$Pwd': 'af4c4aabb77623e051c03b0217119cc8',
             'ctl00$Holder1$selectCookie': '0',
@@ -63,7 +63,7 @@ class GetSms:
         # print("Header:%s" % req.header_items())
         opener.open(req).read().decode()
         # print(result)
-        c.save(ignore_discard=True, ignore_expires=True)
+        # c.save(ignore_discard=True, ignore_expires=True)
         # 获取接口返回的地址，请求后完成登录
         req = ul.Request('http://www.106818.com/Desk.aspx')
         # print("Header:%s" % req.header_items())
