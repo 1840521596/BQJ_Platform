@@ -8,7 +8,7 @@ from page.QuitPage import Quit
 sys.path.append("./page")
 
 
-class Test5ServiceQuit(myunit.MyTest, Quit):
+class Test6ServiceQuit(myunit.MyTest, Quit):
     PATH = methods.project_path
     cf = configparser.ConfigParser()
     cf.read(PATH + "\\login_conf.ini")

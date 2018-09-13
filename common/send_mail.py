@@ -16,7 +16,7 @@ __author__ = 'panze'
 def email_init(report, report_name):
     with open(report, 'rb')as f:
         mail_body = f.read()
-    my_log = Logger("error_log", logging.WARNING, logging.DEBUG)
+    my_log = Logger("error_log.log", logging.WARNING, logging.DEBUG)
     # 创建一个带附件的邮件实例
     msg = MIMEMultipart('mixed')
     # 以测试报告作为邮件正文

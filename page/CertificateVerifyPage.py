@@ -4,9 +4,10 @@ import hashlib
 import json
 import time
 import requests
-from selenium.webdriver.common.keys import Keys
 from page.LoginPage import Page
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from common.verification_pass import CopyrightVerifyPass
 
 
 class CertificateVerifyPage(Page):
@@ -37,6 +38,11 @@ class CertificateVerifyPage(Page):
     timestamp = datetime.datetime.now().strftime("%Y%m%d %H%M%S")
     cdData = []
     primitiveTscCaData = []
+
+    @staticmethod
+    def copyright_verify_pass():
+        cvp = CopyrightVerifyPass()
+        cvp.copyright_verify_pass()
 
     def click_user_portrait(self):
         """

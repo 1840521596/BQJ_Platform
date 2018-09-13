@@ -19,7 +19,8 @@ class CreateCopyrightCredit(Page):
     confirm_info_loc = (By.XPATH, '//*[@id="root"]/div/div/div/div[2]/div/div[2]/div/p')
     commit_confirm_info_loc = (
         By.CSS_SELECTOR, '#root>div>div>div>div:nth-child(2)>div>div.operation_box>div>button:nth-child(2)')
-    get_application_finish_info_loc = (By.CSS_SELECTOR, '#root>div>div>div>div:nth-child(2)>div>div.copyright.copyright_detail>div>div>div.schedule-text.clearfix>div:nth-child(3)>p')
+    get_application_finish_info_loc = (By.CSS_SELECTOR,
+                                       '#root>div>div>div>div:nth-child(2)>div>div.copyright.copyright_detail>div>div>div.schedule-text.clearfix>div:nth-child(3)>p')
     select_vip_purchase_type_loc = (By.CSS_SELECTOR, '#root>div>div>div>div:nth-child('
                                                      '2)>div>div.charge>div.charge-child>div>div.charge-vip.charge-all.border-fff>div'
                                                      ':nth-child(1)')

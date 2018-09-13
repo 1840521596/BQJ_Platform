@@ -101,8 +101,8 @@ class Page(object):
 
     def type_input(self, loc, text):
         try:
+            WebDriverWait(self.driver, 3).until(EC.visibility_of_element_located(loc))
             self.find_element(*loc).clear()
-            time.sleep(1)
             self.find_element(*loc).send_keys(text)
         except AssertionError:
             print("%s 页面中未能找到%s元素" % (self, loc))

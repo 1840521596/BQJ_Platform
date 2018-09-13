@@ -2,7 +2,7 @@
 import datetime
 import time
 from common import methods
-from common.GetSms import GetSms
+from common.getSms import GetSms
 from PIL import Image
 from pytesseract import pytesseract
 from page.BasePage import Page
@@ -22,7 +22,7 @@ class Register(Page):
     bqj_agreement = (By.XPATH, '//*[@id="signupForm"]/div[3]/div/a/span')
     bqj_create_success_loc = (By.CLASS_NAME, 'bqj_creat_suces')
     get_active_code_loc = (By.CSS_SELECTOR, '#signupForm>div.phone_write_code.clearfix>p.count_down.count_down_btn')
-    sms_code_loc = (By.ID, 'verifyCode')
+    sms_code_loc = (By.CSS_SELECTOR, '#verifyCode')
     psw_loc = (By.ID, 'password')
     psw2_loc = (By.ID, 'password2')
     quick_register_btn = (By.CLASS_NAME, 'form_btn')
@@ -162,15 +162,13 @@ class Register(Page):
         获取手机号验证码
         :return: 返回验证码结果
         """
-        sms = GetSms()
-        sms_code = sms.judgeCode()
+        sms_code = GetSms().judgeCode()
         return sms_code
 
-    def user_register(self, phone, password):
+    def user_register_step1(self, phone):
         """
         # 定义个人注册入口
         :param phone: # 输入手机号
-        :param password: # 输入密码
         :return:
         """
         self.open_url()
@@ -180,8 +178,15 @@ class Register(Page):
         self.get_screen_shoot('注册首页', self.timestamp)
         self.click_next_btn()
         self.click_active_code_btn()
-        time.sleep(1)
-        self.type_input_sms_code(self.get_sms_code())
+
+    def user_register_step2(self, password):
+        """
+        # 定义个人注册入口
+        :param password: # 输入密码
+        :return:
+        """
+        sms_code = self.get_sms_code()
+        self.type_input_sms_code(sms_code)
         self.type_input_password(password)
         self.get_screen_shoot('注册账号页', self.timestamp)
         self.click_quick_register()

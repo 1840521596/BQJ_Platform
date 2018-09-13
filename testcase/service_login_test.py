@@ -9,7 +9,7 @@ import configparser
 sys.path.append("./page")
 
 
-class Test4ServiceLogin(myunit.MyTest, Login, CommonMethod):
+class Test5ServiceLogin(myunit.MyTest, Login, CommonMethod):
     PATH = methods.project_path
     cf = configparser.ConfigParser()
     cf.read(PATH + "\\login_conf.ini")
