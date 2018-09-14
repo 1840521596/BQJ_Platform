@@ -53,7 +53,7 @@ class GetSms:
             '__EVENTARGUMENT': '',
             '__VIEWSTATE': '/wEPDwUKLTUzNTA0NDkzNw9kFgJmD2QWAgIDD2QWAgIBD2QWAgIGDxYCHglpbm5lcmh0bWwFgwHniYjmnYPkv6Hmga/vvJpF5LyB5L+h6YCaLeS8geS4muiQpemUgOS/oeaBr+ezu+e7nyAmbmJzcDsgSUNQ5aSH5qGI77yaPGEgaHJlZj0iaHR0cDovL3d3dy5taWliZWlhbi5nb3YuY24iPuS6rElDUOWkhzEyMDIzMzUx5Y+3PC9hPmQYAQUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFgEFFGN0bDAwJEhvbGRlcjEkSW1hZ2Ux1zmJ0XKwzzwvvRdeu4wrmIIa8vA=',
             '__EVENTVALIDATION': '/wEWBwKOoYT5CwL+wOqsCAL0/u7GDwLe59jTDQK51dqTCgLHy6GnCgLD+LOmCP4nVoq7LlUanvvu67Dgya3Wrr8M',
-            'ctl00$Holder1$pwds': 'changyuan',
+            'ctl00$Holder1$pwds': '*******',
             'ctl00$Holder1$CorpID': 'SY0204',
             'ctl00$Holder1$Pwd': 'af4c4aabb77623e051c03b0217119cc8',
             'ctl00$Holder1$selectCookie': '0',
@@ -102,7 +102,7 @@ class GetSms:
         code = re.findall(u"验证码.(\d*)", response[sms:])
         return code
         # # 取出对应下标值
-        # sms = response.text.find('15810346836')
+        # sms = response.text.find('158********')
         # # 取出对应验证码
         # code = re.findall(u"验证码.(\d*)", response.text[sms:])
         # return code[0]
@@ -131,7 +131,7 @@ class VerifyCopyrightPass:
         """
         data = {'emailLogin': 'true',
                 'password': 'abc123',
-                'username': 'panze@anne.com.cn'
+                'username': '*********'
                 }
         # Post的数据必须是bytes或者iterable of bytes，不能是str，因此需要进行encode（）编码
         data = uz.urlencode(data).encode()
