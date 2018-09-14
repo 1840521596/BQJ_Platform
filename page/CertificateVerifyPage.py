@@ -7,7 +7,7 @@ import requests
 from page.LoginPage import Page
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from common.verification_pass import CopyrightVerifyPass
+from common.GetInterfaceValue import VerifyCopyrightPass
 
 
 class CertificateVerifyPage(Page):
@@ -40,9 +40,9 @@ class CertificateVerifyPage(Page):
     primitiveTscCaData = []
 
     @staticmethod
-    def copyright_verify_pass():
-        cvp = CopyrightVerifyPass()
-        cvp.copyright_verify_pass()
+    def verify_copyright_pass():
+        vcp = VerifyCopyrightPass()
+        vcp.copyright_verify_pass()
 
     def click_user_portrait(self):
         """

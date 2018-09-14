@@ -1,8 +1,12 @@
 # _*_ coding: utf-8 _*_
 import configparser
+import json
 import os
 import re
+import time
 from urllib import request
+
+import requests
 from PIL import Image
 from pytesseract import pytesseract
 import urllib.parse as uz
@@ -20,7 +24,7 @@ ul.install_opener(opener)  # 安装全局模拟浏览器
 headers = {
     "Referer": "http://www.106818.com/loginFront.aspx",
     "Connection": "keep-alive",
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.75 Safari/537.36"}
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:62.0) Gecko/20100101 Firefox/62.0"}
 
 
 class GetSms:
@@ -117,7 +121,98 @@ class GetSms:
                 return array[0]
 
 
+class VerifyCopyrightPass:
+    url = 'https://www.bqj.cn/order/original/getOrderListForMulti'
+
+    def copyright_verify_pass(self):
+        """
+        登录版全家
+        :return:
+        """
+        data = {'emailLogin': 'true',
+                'password': 'abc123',
+                'username': 'panze@anne.com.cn'
+                }
+        # Post的数据必须是bytes或者iterable of bytes，不能是str，因此需要进行encode（）编码
+        data = uz.urlencode(data).encode()
+        req = ul.Request("https://backendtp.bqj.cn/a/login", data, headers)
+        # print("Header:%s" % req.header_items())
+        opener.open(req).read().decode()
+
+        req = ul.Request("https://backendtp.bqj.cn/a?login")
+        # print("Header:%s" % req.header_items())
+        opener.open(req).read().decode()
+        # print(html)
+        url = "https://backendtp.bqj.cn/a/order/orderCommon"
+        req = ul.Request(url)
+        # print("Header:%s" % req.header_items())
+        opener.open(req).read().decode()
+        # print(html)
+
+        data = {'authorName': '',
+                'endTime': '',
+                'endUpdateTime': '',
+                'memberStatus': '',
+                'orderSeqNo': '',
+                'pageNo': '1',
+                'pageSize': '20',
+                'startTime': '',
+                'startUpdateTime': '',
+                'terminal': '',
+                'userTye': '',
+                'workFullname': '测试数据，勿动'}
+        # Post的数据必须是bytes或者iterable of bytes，不能是str，因此需要进行encode（）编码
+        data = uz.urlencode(data).encode()
+        req = ul.Request("https://backendtp.bqj.cn/a/order/orderCommon/", data, headers)
+        # print("Header:%s" % req.header_items())
+        opener.open(req).read().decode()
+
+        req = ul.Request(
+            "https://backendtp.bqj.cn/a/orderSop/copyrightDepositCertificateForm?id=" + self.get_copyright_id())
+        # print("Header:%s" % req.header_items())
+        opener.open(req).read().decode()
+        # print(response)
+
+        # 版权存证审核通过
+        req = ul.Request(
+            "https://backendtp.bqj.cn/a//orderSop/copyrightDepositCertificateVerify?orderId=" +
+            self.get_copyright_id() + "&auditType=filing_identify")
+        # print("Header:%s" % req.header_items())
+        opener.open(req).read().decode()
+        time.sleep(2)
+        # print(response)
+        # number = json.loads(result)
+        # print("caData:" + number['copyright']['ca']['caData'])
+        # return number['copyright']['id']
+
+    def get_copyright_id(self):
+        """
+        获取版权存证id
+        :return: 异常原因
+        """
+        try:
+            data = {'certType': 'all',
+                    'keyword': '',
+                    'period': 'all',
+                    'pageSize': '9',
+                    'pageNo': '1',
+                    'workType': 'all',
+                    'status': 'all',
+                    'loading': 'true',
+                    'registerId': '143556'}
+            rq = requests.post(self.url, data=data)
+            result = rq.text
+            number = json.loads(result)
+            # print("caData:" + number['copyright']['ca']['caData'])
+            return number['copyrights'][0]['id']
+        except Exception as msg:
+            return "异常原因%s" % msg
+
+
+# if __name__ == '__main__':
+#     print(VerifyCopyrightPass().copyright_verify_pass())
+
 if __name__ == '__main__':
-    get_sms = GetSms()
-    print(get_sms.judgeCode())
+    print(GetSms().judgeCode())
+    print(VerifyCopyrightPass().copyright_verify_pass())
 

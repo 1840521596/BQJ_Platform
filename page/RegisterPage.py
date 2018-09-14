@@ -2,7 +2,7 @@
 import datetime
 import time
 from common import methods
-from common.getSms import GetSms
+from common.GetInterfaceValue import GetSms
 from PIL import Image
 from pytesseract import pytesseract
 from page.BasePage import Page

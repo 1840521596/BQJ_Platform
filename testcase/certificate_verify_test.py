@@ -19,29 +19,26 @@ class Test4CertificateVerify(myunit.MyTest, methods.CommonMethod, Login, Certifi
 
     def test_certificate_content_verify(self):
         """测试证书内容核验"""
+        self.verify_copyright_pass()
         self.user_login(self.user, self.pwd)
-        self.copyright_verify_pass()
         self.user_certificate_verify()
         self.assertEqual(self.cdData[0], self.sha256())
 
     def test_trusted_time_verify(self):
         """测试可信时间凭证核验"""
         self.user_login(self.user, self.pwd)
-        self.copyright_verify_pass()
         self.user_trusted_time_verify()
         self.assertIn(self.get_certificate_id(), self.get_trusted_time_verify_result())
 
     def test_user_digital_signature_verify(self):
         """测试用户数字签名核验"""
         self.user_login(self.user, self.pwd)
-        self.copyright_verify_pass()
         self.user_digital_signature_verify()
         self.assertEqual('1.本次签名有效', self.get_signature_result())
 
     def test_user_copyright_block_chain_verify(self):
         """测试版权区块链联盟核验"""
         self.user_login(self.user, self.pwd)
-        self.copyright_verify_pass()
         self.user_copyright_block_chain_verify()
         self.assertEqual(self.get_certificate_value(), self.get_hash_value())
 
