@@ -13,6 +13,7 @@ class CreateRealName(Page):
     upload_front_loc = (By.CSS_SELECTOR, '#root>div>div>div>div.account.clearfix>div.account-content>div>div>div:nth-child(2)>div>div>div:nth-child(2)>div.ant-col-18>div:nth-child(1)>div>span>div')
     upload_back_loc = (By.CSS_SELECTOR, '#root>div>div>div>div.account.clearfix>div.account-content>div>div>div:nth-child(2)>div>div>div:nth-child(2)>div.ant-col-18>div:nth-child(2)>div>span>div')
     quick_auth_btn = (By.XPATH, '//*[@id="root"]/div/div/div/div[2]/div[2]/div/div/div[2]/div/div/div[5]/button')
+    real_name_success_loc = (By.CSS_SELECTOR, '#root > div > div > div > div.account.clearfix > div.account-content > div > div > div.margin-top-20.font14')
     PATH = methods.project_path
     timestamp = datetime.datetime.now().strftime("%Y%m%d %H%M%S")
 
@@ -71,6 +72,17 @@ class CreateRealName(Page):
         """
         try:
             self.click(self.quick_auth_btn)
+        except Exception as msg:
+            return u"异常原因%s" % msg
+
+    def get_real_name_success_info(self):
+        """
+        获取认证成功文字信息
+        :return:
+        """
+        try:
+            content = self.find_elem_text(self.real_name_success_loc)
+            return content
         except Exception as msg:
             return u"异常原因%s" % msg
 

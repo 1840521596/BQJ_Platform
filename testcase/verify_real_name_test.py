@@ -21,6 +21,7 @@ class Test2VerifyRealName(myunit.MyTest, methods.CommonMethod,  Login, CreateRea
         self.user_login(self.user, self.pwd)
         self.click_copyright_credit_page()
         self.create_real_name_verify()
+        self.assertEqual('认证成功！', self.get_real_name_success_info())
 
 
 if __name__ == '__main__':
