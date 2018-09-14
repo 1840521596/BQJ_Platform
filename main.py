@@ -3,7 +3,7 @@ import os
 import sys
 import unittest
 from common import send_mail
-from HtmlTestRunner import HTMLTestRunner
+from HtmlTestRunner import HTMLTestReportCN
 import time
 # sys.path.append("./testcase")
 sys.path.append("./driver")
@@ -21,10 +21,11 @@ def out_put_report(arg):
     log_name = get_log_name()
     # startup()
     fp = open(log_name, 'wb')
-    runner = HTMLTestRunner.HTMLTestRunner(
+    runner = HTMLTestReportCN.HTMLTestRunner(
         stream=fp,
-        title='Bqj ServicePlatform Test Report',
-        description='Report_description')
+        title='版全家网站3.3.0版本测试报告',
+        description='详细测试用例结果',
+        tester=u'潘泽')
     runner.run(arg)
     fp.close()
 
