@@ -17,8 +17,10 @@ class CreateCopyrightCredit(Page):
     next_step_btn_loc = (By.CSS_SELECTOR, '#root>div>div>div>div:nth-child('
                                           '2)>div>form>div.all-btn.clearfix>button.ant-btn.ant-btn-primary.next-btn')
     confirm_info_loc = (By.XPATH, '//*[@id="root"]/div/div/div/div[2]/div/div[2]/div/p')
-    commit_confirm_info_loc = (
+    vip_commit_confirm_info_loc = (
         By.CSS_SELECTOR, '#root>div>div>div>div:nth-child(2)>div>div.operation_box>div>button:nth-child(2)')
+    commit_confirm_info_loc = (
+        By.CSS_SELECTOR, '#root > div > div > div > div:nth-child(2) > div > div.charge > div.operation_box > div > button:nth-child(2)')
     get_application_finish_info_loc = (By.CSS_SELECTOR,
                                        '#root>div>div>div>div:nth-child(2)>div>div.copyright.copyright_detail>div>div>div.schedule-text.clearfix>div:nth-child(3)>p')
     select_vip_purchase_type_loc = (By.CSS_SELECTOR, '#root>div>div>div>div:nth-child('
@@ -94,6 +96,17 @@ class CreateCopyrightCredit(Page):
         except NoSuchElementException as msg:
             return "异常原因%s" % msg
 
+    def click_vip_confirm_info_btn(self):
+        """
+        VIP点击确认信息并提交按钮
+        :return: 返回异常原因
+        """
+        try:
+            self.click(self.vip_commit_confirm_info_loc)
+            time.sleep(1)
+        except NoSuchElementException as msg:
+            return "异常原因%s" % msg
+
     def click_confirm_info_btn(self):
         """
         点击确认信息并提交按钮
@@ -165,6 +178,22 @@ class CreateCopyrightCredit(Page):
             time.sleep(1)
         except NoSuchElementException as msg:
             return "异常原因%s" % msg
+
+    def vip_user_create_copyright_credit(self):
+        self.click_client_detail_btn()
+        self.get_screen_shoot("点击立即存证", self.timestamp)
+        self.click_ant_upload_btn()
+        self.get_screen_shoot("上传作品", self.timestamp)
+        self.scroll_to_middle()
+        self.type_input_work_name()
+        self.get_screen_shoot("输入作品名称", self.timestamp)
+        self.scroll_to_bottom()
+        self.click_next_step_btn()
+        self.get_screen_shoot('确认信息页', self.timestamp)
+        self.scroll_to_bottom()
+        self.click_vip_confirm_info_btn()
+        self.get_screen_shoot('信息审核页', self.timestamp)
+        self.scroll_to_top()
 
     def user_create_copyright_credit(self):
         self.click_client_detail_btn()

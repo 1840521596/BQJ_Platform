@@ -92,7 +92,7 @@ class CertificateVerifyPage(Page):
         :return:异常原因
         """
         try:
-            self.scroll_to_bottom()
+            self.scroll_to_less_middle()
             self.click(self.certificate_verify_loc)
             time.sleep(2)
         except Exception as msg:
@@ -106,7 +106,7 @@ class CertificateVerifyPage(Page):
         try:
             self.type_input(self.type_check_num_loc, self.get_bqj_check_num())
             self.click(self.confirm_loc)
-            time.sleep(2)
+            time.sleep(3)
         except Exception as msg:
             return "异常原因%s" % msg
 
@@ -146,6 +146,7 @@ class CertificateVerifyPage(Page):
         """
         try:
             self.click(self.copy_content_loc)
+            self.click(self.confirm_copy_content_loc)
             time.sleep(1)
         except Exception as msg:
             return "异常原因%s" % msg
@@ -327,20 +328,18 @@ class CertificateVerifyPage(Page):
         :return:
         """
         self.click_user_portrait()
-        self.get_screen_shoot("我的创作首页", self.timestamp)
+        # self.get_screen_shoot("我的创作首页", self.timestamp)
         self.click_user_work()
-        self.get_screen_shoot("作品详情页", self.timestamp)
+        # self.get_screen_shoot("作品详情页", self.timestamp)
         self.click_certificate_verify_btn()
-        self.get_screen_shoot("证书核验页", self.timestamp)
+        # self.get_screen_shoot("证书核验页", self.timestamp)
         self.type_input_check_num()
         self.get_screen_shoot("证书内容完整性展示页", self.timestamp)
         self.cdData.append(self.get_certificate_content_verify())
         self.primitiveTscCaData.append(self.get_certificate_main_content())
         self.click_copy_content_btn()
-        self.get_screen_shoot("step01 点击复制内容", self.timestamp)
-        self.click(self.confirm_copy_content_loc)
         self.open_hash_link()
-        self.get_screen_shoot("SHA加密首页", self.timestamp)
+        # self.get_screen_shoot("SHA加密首页", self.timestamp)
         self.SHA256_secret_content()
         self.get_screen_shoot("SHA256加密结果页", self.timestamp)
 
@@ -357,9 +356,9 @@ class CertificateVerifyPage(Page):
         # self.get_screen_shoot("证书核验页", self.timestamp)
         self.type_input_check_num()
         # self.get_screen_shoot("证书内容完整性展示页", self.timestamp)
-        self.scroll_to_middle()
+        self.scroll_to_less_middle()
         self.open_time_center()
-        self.get_screen_shoot("中国科学院国家授时中心页", self.timestamp)
+        # self.get_screen_shoot("中国科学院国家授时中心页", self.timestamp)
         self.click_trusted_time_certificate_btn()
         self.get_screen_shoot("授时中心验证成功页", self.timestamp)
 
@@ -378,7 +377,7 @@ class CertificateVerifyPage(Page):
         # self.get_screen_shoot("证书内容完整性展示页", self.timestamp)
         self.scroll_to_more_bottom()
         self.click_iTrustChina_btn()
-        self.get_screen_shoot("诚信签验签页", self.timestamp)
+        # self.get_screen_shoot("诚信签验签页", self.timestamp)
         self.click_quick_verify_btn()
         self.get_screen_shoot("签名信息展示页", self.timestamp)
 

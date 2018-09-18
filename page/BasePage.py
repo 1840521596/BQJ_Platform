@@ -134,11 +134,23 @@ class Page(object):
 
     def scroll_to_top(self):
         """
-        滑动到底部
+        滑动到顶部
         :return:返回异常原因
         """
         try:
             js = "var q=document.documentElement.scrollTop=0"
+            self.script(js)
+            time.sleep(2)
+        except Exception as msg:
+            return "异常原因%s" % msg
+
+    def scroll_to_less_middle(self):
+        """
+        滑动到靠近顶部
+        :return: 返回异常原因
+        """
+        try:
+            js = "var q=document.documentElement.scrollTop=300"
             self.script(js)
             time.sleep(2)
         except Exception as msg:
@@ -150,7 +162,7 @@ class Page(object):
         :return:返回异常原因
         """
         try:
-            js = "var q=document.documentElement.scrollTop=600"
+            js = "var q=document.documentElement.scrollTop=550"
             self.script(js)
             time.sleep(2)
         except Exception as msg:
