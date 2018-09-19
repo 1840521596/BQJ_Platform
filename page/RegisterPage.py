@@ -188,10 +188,10 @@ class Register(Page):
         sms_code = self.get_sms_code()
         self.type_input_sms_code(sms_code)
         self.type_input_password(password)
-        self.get_screen_shoot('注册账号页', self.timestamp)
+        # self.get_screen_shoot('注册账号页', self.timestamp)
         self.click_quick_register()
         time.sleep(1)
-        self.get_screen_shoot('注册完成', self.timestamp)
+        # self.get_screen_shoot('注册完成', self.timestamp)
         # self.click_enter_main_page()
 
     def enterprise_register(self, mail):
