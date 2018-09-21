@@ -65,18 +65,15 @@ class Cat(Animal):
 
 
 class Dog(Animal):
+    """
+    继承
+    """
     def bark(self):
         print('%s 汪汪叫' % self.name)
 
 
 if __name__ == '__main__':
-    c1 = Cat('猫one')
-    c1.eat()
-    c1.drink()
-    c1.shit()
-    c1.pee()
-
-    c2 = Cat('猫two')
+    c2 = Cat('猫one')
     c2.cat_eat()
     c2.drink()
     c2.cat_cry()
