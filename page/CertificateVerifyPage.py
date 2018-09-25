@@ -33,7 +33,7 @@ class CertificateVerifyPage(Page):
     quick_verify_loc = (By.CSS_SELECTOR, 'body > div.certificate_inquiry_box > div.certificate_inquiry_content > div > div > a')
     signature_result_loc = (By.CSS_SELECTOR, '#result')
     copyright_block_chain_loc = (By.CSS_SELECTOR, '#root > div > div > div > div.ordercommon > div.vmain-content > div:nth-child(5) > div:nth-child(10) > a')
-    certificate_content_verify_loc = (By.CSS_SELECTOR, '#app > div > div.w1200 > div:nth-child(4) > table > tr:nth-child(5) > td:nth-child(2)')
+    certificate_content_verify_loc = (By.CSS_SELECTOR, '#app > div > div.w1200 > div:nth-child(4) > table > tr:nth-child(1) > td:nth-child(2)')
     hash_certificate_content_verify_loc = (By.CSS_SELECTOR, '#app > div > div.w1200 > div.copyPub.nobor.copyPubDetail > table > tr > td:nth-child(2)')
     timestamp = datetime.datetime.now().strftime("%Y%m%d %H%M%S")
     cdData = []
