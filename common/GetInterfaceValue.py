@@ -2,10 +2,9 @@
 import configparser
 import json
 import os
+import random
 import re
-import time
 from urllib import request
-
 import requests
 from PIL import Image
 from pytesseract import pytesseract
@@ -53,7 +52,7 @@ class GetSms:
             '__EVENTARGUMENT': '',
             '__VIEWSTATE': '/wEPDwUKLTUzNTA0NDkzNw9kFgJmD2QWAgIDD2QWAgIBD2QWAgIGDxYCHglpbm5lcmh0bWwFgwHniYjmnYPkv6Hmga/vvJpF5LyB5L+h6YCaLeS8geS4muiQpemUgOS/oeaBr+ezu+e7nyAmbmJzcDsgSUNQ5aSH5qGI77yaPGEgaHJlZj0iaHR0cDovL3d3dy5taWliZWlhbi5nb3YuY24iPuS6rElDUOWkhzEyMDIzMzUx5Y+3PC9hPmQYAQUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFgEFFGN0bDAwJEhvbGRlcjEkSW1hZ2Ux1zmJ0XKwzzwvvRdeu4wrmIIa8vA=',
             '__EVENTVALIDATION': '/wEWBwKOoYT5CwL+wOqsCAL0/u7GDwLe59jTDQK51dqTCgLHy6GnCgLD+LOmCP4nVoq7LlUanvvu67Dgya3Wrr8M',
-            'ctl00$Holder1$pwds': '*******',
+            'ctl00$Holder1$pwds': '',
             'ctl00$Holder1$CorpID': 'SY0204',
             'ctl00$Holder1$Pwd': 'af4c4aabb77623e051c03b0217119cc8',
             'ctl00$Holder1$selectCookie': '0',
@@ -122,16 +121,73 @@ class GetSms:
 
 
 class VerifyCopyrightPass:
+    login_url = "https://passport.bqj.cn/image/validate/login?"
     url = 'https://www.bqj.cn/order/original/getOrderListForMulti'
+
+    def verify_code(self):
+        """
+        获取验证码
+        :return: 验证码求和后的值
+        """
+        num = random.choice(['0.']) + "".join(random.choice("0123456789") for i in range(17))
+        # num = random.choice(['159']) + "".join(random.choice("0123456789") for i in range(8))
+        # print(num)
+        img_url = self.login_url + num
+        image_path = r'D:\潘泽—工作文件\项目代码\createBQcredit\testImages\1.jpg'
+        ul.urlretrieve(img_url, image_path)
+        img_str = pytesseract.image_to_string(Image.open(image_path))
+        get_sum = int(img_str[0]) + int(img_str[2])
+        return get_sum
+
+    def get_registerId(self):
+        """
+        登录版全家网页版,获取注册ID
+        :return:返回注册ID
+        """
+        global result
+        result = []
+        data = {
+            'username': '15800000002',
+            'password': 'abc123',
+            'imageCode': self.verify_code(),
+            'backurl': 'http://www.bqj.cn/sso/afterLogin',
+            'emailLogin': 'false',
+            'mobileLogin': 'true',
+            '_ref': 'http://www.bqj.cn/sso/afterLogin'
+        }
+        # Post的数据必须是bytes或者iterable of bytes，不能是str，因此需要进行encode（）编码
+        data = uz.urlencode(data).encode()
+        req = ul.Request("https://passport.bqj.cn/sso/login", data, headers)
+        # print("Header:%s" % req.header_items())
+        html = opener.open(req).read().decode()
+        result.append(html)
+        # print(result)
+        c.save(ignore_discard=True, ignore_expires=True)
+        # print(c)
+        # for item in c:
+        #     print('Name=' + item.name)
+        #     print('Value = ' + item.value)
+        # print("登录结果：%s" % result)
+
+        # 获取接口返回的地址，请求后完成登录
+        resp = json.loads(html)
+        # ssoCode = resp['backurl'].split('=')[1].split('&')[0]
+        registerId = resp['backurl'].split('=')[1].split('&')[1]
+        # back_url = 'http://www.bqj.cn/sso/afterLogin?ssoCode=' + ssoCode + '&registerId=' + registerId
+        # req = ul.Request(back_url)
+        # print("Header:%s" % req.header_items())
+        # opener.open(req).read().decode()
+        # print("打印登录成功后的页面：%s" % html)
+        return registerId
 
     def copyright_verify_pass(self):
         """
-        登录版全家
+        登录版全家后台
         :return:
         """
         data = {'emailLogin': 'true',
                 'password': 'abc123',
-                'username': '*********'
+                'username': 'panze@anne.com.cn'
                 }
         # Post的数据必须是bytes或者iterable of bytes，不能是str，因此需要进行encode（）编码
         data = uz.urlencode(data).encode()
@@ -139,6 +195,10 @@ class VerifyCopyrightPass:
         # print("Header:%s" % req.header_items())
         opener.open(req).read().decode()
 
+        """
+        进入服务平台首页
+        :return:
+        """
         req = ul.Request("https://backendtp.bqj.cn/a?login")
         # print("Header:%s" % req.header_items())
         opener.open(req).read().decode()
@@ -149,6 +209,10 @@ class VerifyCopyrightPass:
         opener.open(req).read().decode()
         # print(html)
 
+        """
+        查询测试数据订单
+        :return:
+        """
         data = {'authorName': '',
                 'endTime': '',
                 'endUpdateTime': '',
@@ -160,26 +224,32 @@ class VerifyCopyrightPass:
                 'startUpdateTime': '',
                 'terminal': '',
                 'userTye': '',
-                'workFullname': '测试数据，勿动'}
+                'workFullname': '1天内测试数据，勿动'}
         # Post的数据必须是bytes或者iterable of bytes，不能是str，因此需要进行encode（）编码
         data = uz.urlencode(data).encode()
         req = ul.Request("https://backendtp.bqj.cn/a/order/orderCommon/", data, headers)
         # print("Header:%s" % req.header_items())
         opener.open(req).read().decode()
 
+        """
+        查询测试数据订单
+        :return:
+        """
         req = ul.Request(
             "https://backendtp.bqj.cn/a/orderSop/copyrightDepositCertificateForm?id=" + self.get_copyright_id())
         # print("Header:%s" % req.header_items())
         opener.open(req).read().decode()
         # print(response)
 
-        # 版权存证审核通过
+        """
+        版权存证审核通过
+        :return:
+        """
         req = ul.Request(
             "https://backendtp.bqj.cn/a//orderSop/copyrightDepositCertificateVerify?orderId=" +
             self.get_copyright_id() + "&auditType=filing_identify")
         # print("Header:%s" % req.header_items())
         opener.open(req).read().decode()
-        time.sleep(2)
         # print(response)
         # number = json.loads(result)
         # print("caData:" + number['copyright']['ca']['caData'])
@@ -199,9 +269,10 @@ class VerifyCopyrightPass:
                     'workType': 'all',
                     'status': 'all',
                     'loading': 'true',
-                    'registerId': '143556'}
+                    'registerId': self.get_registerId()}
             rq = requests.post(self.url, data=data)
             result = rq.text
+            # print(result)
             number = json.loads(result)
             # print("caData:" + number['copyright']['ca']['caData'])
             return number['copyrights'][0]['id']
@@ -209,10 +280,6 @@ class VerifyCopyrightPass:
             return "异常原因%s" % msg
 
 
-# if __name__ == '__main__':
-#     print(VerifyCopyrightPass().copyright_verify_pass())
-
 if __name__ == '__main__':
     print(GetSms().judgeCode())
     print(VerifyCopyrightPass().copyright_verify_pass())
-
