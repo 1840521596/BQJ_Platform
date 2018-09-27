@@ -160,9 +160,9 @@ class VerifyCopyrightPass:
         req = ul.Request("https://passport.bqj.cn/sso/login", data, headers)
         # print("Header:%s" % req.header_items())
         html = opener.open(req).read().decode()
-        result.append(html)
+        # result.append(html)
         # print(result)
-        c.save(ignore_discard=True, ignore_expires=True)
+        # c.save(ignore_discard=True, ignore_expires=True)
         # print(c)
         # for item in c:
         #     print('Name=' + item.name)
@@ -171,12 +171,13 @@ class VerifyCopyrightPass:
 
         # 获取接口返回的地址，请求后完成登录
         resp = json.loads(html)
-        # ssoCode = resp['backurl'].split('=')[1].split('&')[0]
-        registerId = resp['backurl'].split('=')[1].split('&')[1]
-        # back_url = 'http://www.bqj.cn/sso/afterLogin?ssoCode=' + ssoCode + '&registerId=' + registerId
-        # req = ul.Request(back_url)
+        ssoCode = resp['backurl'].split('=')[1].split('&')[0]
+        registerId = resp['user']['registerId']
+        # print("获取注册ID:" + registerId)
+        back_url = 'http://www.bqj.cn/sso/afterLogin?ssoCode=' + ssoCode + '&registerId=' + registerId
+        req = ul.Request(back_url)
         # print("Header:%s" % req.header_items())
-        # opener.open(req).read().decode()
+        opener.open(req).read().decode()
         # print("打印登录成功后的页面：%s" % html)
         return registerId
 
@@ -281,5 +282,5 @@ class VerifyCopyrightPass:
 
 
 if __name__ == '__main__':
-    print(GetSms().judgeCode())
+    # print(GetSms().judgeCode())
     print(VerifyCopyrightPass().copyright_verify_pass())
