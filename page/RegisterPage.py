@@ -175,9 +175,8 @@ class Register(Page):
         verify_code = self.get_image_code()
         self.type_input_phone(phone)
         self.type_input_verify(verify_code)
-        self.get_screen_shoot('注册首页', self.timestamp)
+        # self.get_screen_shoot('注册首页', self.timestamp)
         self.click_next_btn()
-        self.click_active_code_btn()
 
     def user_register_step2(self, password):
         """
@@ -185,6 +184,7 @@ class Register(Page):
         :param password: # 输入密码
         :return:
         """
+        self.click_active_code_btn()
         sms_code = self.get_sms_code()
         self.type_input_sms_code(sms_code)
         self.type_input_password(password)
