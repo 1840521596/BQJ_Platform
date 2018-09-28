@@ -197,6 +197,7 @@ class CreateCopyrightCredit(Page):
 
     def user_create_copyright_credit(self):
         self.click_client_detail_btn()
+        time.sleep(3)
         # self.get_screen_shoot("点击立即存证", self.timestamp)
         self.click_ant_upload_btn()
         # self.get_screen_shoot("上传作品", self.timestamp)

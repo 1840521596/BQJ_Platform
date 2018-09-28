@@ -334,14 +334,14 @@ class CertificateVerifyPage(Page):
         self.click_certificate_verify_btn()
         # self.get_screen_shoot("证书核验页", self.timestamp)
         self.type_input_check_num()
-        self.get_screen_shoot("证书内容完整性展示页", self.timestamp)
+        self.get_screen_shoot("1.证书内容信息截图", self.timestamp)
         self.cdData.append(self.get_certificate_content_verify())
         self.primitiveTscCaData.append(self.get_certificate_main_content())
         self.click_copy_content_btn()
         self.open_hash_link()
         # self.get_screen_shoot("SHA加密首页", self.timestamp)
         self.SHA256_secret_content()
-        self.get_screen_shoot("SHA256加密结果页", self.timestamp)
+        self.get_screen_shoot("2.内容核验截图", self.timestamp)
 
     def user_trusted_time_verify(self):
         """
@@ -360,7 +360,7 @@ class CertificateVerifyPage(Page):
         self.open_time_center()
         # self.get_screen_shoot("中国科学院国家授时中心页", self.timestamp)
         self.click_trusted_time_certificate_btn()
-        self.get_screen_shoot("授时中心验证成功页", self.timestamp)
+        self.get_screen_shoot("3.授时时间核验截图", self.timestamp)
 
     def user_digital_signature_verify(self):
         """
@@ -379,7 +379,7 @@ class CertificateVerifyPage(Page):
         self.click_iTrustChina_btn()
         # self.get_screen_shoot("诚信签验签页", self.timestamp)
         self.click_quick_verify_btn()
-        self.get_screen_shoot("签名信息展示页", self.timestamp)
+        self.get_screen_shoot("4.签名核验截图", self.timestamp)
 
     def user_copyright_block_chain_verify(self):
         """
@@ -397,6 +397,6 @@ class CertificateVerifyPage(Page):
         self.scroll_to_bottom()
         self.click_copyright_chain_block_btn()
         self.scroll_to_middle()
-        self.get_screen_shoot("版权区块链公示页", self.timestamp)
+        self.get_screen_shoot("5.区块链核验截图", self.timestamp)
 
 

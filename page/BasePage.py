@@ -74,7 +74,7 @@ class Page(object):
 
     def find_element(self, *loc):
         try:
-            WebDriverWait(self.driver, 3).until(EC.visibility_of_element_located(loc))
+            WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(loc))
             return self.driver.find_element(*loc)
         except AssertionError:
             print("%s 页面中未能找到%s元素" % (self, loc))
