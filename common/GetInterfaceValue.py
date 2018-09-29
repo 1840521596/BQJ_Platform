@@ -272,9 +272,9 @@ class VerifyCopyrightPass:
                     'loading': 'true',
                     'registerId': self.get_registerId()}
             rq = requests.post(self.url, data=data)
-            result = rq.text
+            result_text = rq.text
             # print(result)
-            number = json.loads(result)
+            number = json.loads(result_text)
             # print("caData:" + number['copyright']['ca']['caData'])
             return number['copyrights'][0]['id']
         except Exception as msg:
@@ -282,5 +282,5 @@ class VerifyCopyrightPass:
 
 
 if __name__ == '__main__':
-    # print(GetSms().judgeCode())
+    print(GetSms().judgeCode())
     print(VerifyCopyrightPass().copyright_verify_pass())
