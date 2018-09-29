@@ -11,7 +11,7 @@ from common.GetInterfaceValue import VerifyCopyrightPass
 
 
 class CertificateVerifyPage(Page):
-    position_path_loc = (By.CSS_SELECTOR, '#root>div>div>div>div.layout>header>div>ul>li.header-images>a')
+    position_path_loc = (By.CSS_SELECTOR, '#root > div > div > div > div:nth-child(1) > div > header > div > ul > li.header-images > a')
     img_container_loc = (By.CSS_SELECTOR, '#root>div>div>div>div.account.clearfix>div.account-content>div>section>ul>li>div>div:nth-child(2)>div')
     certificate_verify_loc = (By.CSS_SELECTOR, '#root > div > div > div > div.content > div > div.detailsLeftBox > div.content > section > div:nth-child(4) > div > div > article:nth-child(1) > div.creation-details-certificate-info > div > div > a:nth-child(2) > button')
     type_check_num_loc = (By.CSS_SELECTOR, '#code')

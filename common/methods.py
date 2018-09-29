@@ -11,7 +11,7 @@ project_path = os.path.abspath(os.path.join(os.path.dirname(os.path.split(os.pat
 class CommonMethod(Page):
     main_loc = (By.XPATH, '//*[@id="root"]/div/div/div/div[1]/header/div/ul/li[1]/a')
     protection_client_loc = (By.XPATH, '//*[@id="root"]/div/div/div/div[1]/header/div/ul/li[2]/a')
-    copyright_show_loc = (By.XPATH, '//*[@id="root"]/div/div/div/div[1]/header/div/ul/li[3]/a')
+    copyright_show_loc = (By.CSS_SELECTOR, '#root > div > div > div > div:nth-child(1) > div > header > div > ul > li:nth-child(3) > a')
     bqj_main_url = u'https://www.bqj.cn/index.html#/'
     main_title = '版权家-版权服务专家'
 

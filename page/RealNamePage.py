@@ -89,14 +89,14 @@ class CreateRealName(Page):
     def create_real_name_verify(self):
         self.get_screen_shoot('立即存证', self.timestamp)
         self.click_client_detail_btn()
-        self.get_screen_shoot('未实名认证弹窗', self.timestamp)
+        # self.get_screen_shoot('未实名认证弹窗', self.timestamp)
         self.click_go_real_name_btn()
         self.upload_credentials()
-        self.get_screen_shoot('上传证件', self.timestamp)
+        # self.get_screen_shoot('上传证件', self.timestamp)
         self.scroll_to_bottom()
         self.click_quick_auth_btn()
         time.sleep(1)
-        self.get_screen_shoot('认证成功', self.timestamp)
+        # self.get_screen_shoot('认证成功', self.timestamp)
 
     # def click_ant_upload_btn(self):
     #     """
