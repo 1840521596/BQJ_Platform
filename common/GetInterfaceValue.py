@@ -186,10 +186,11 @@ class VerifyCopyrightPass:
         登录版全家后台
         :return:
         """
-        data = {'emailLogin': 'true',
-                'password': 'abc123',
-                'username': 'panze@anne.com.cn'
-                }
+        data = {
+            'emailLogin': 'true',
+            'password': 'abc123',
+            'username': 'panze@anne.com.cn'
+        }
         # Post的数据必须是bytes或者iterable of bytes，不能是str，因此需要进行encode（）编码
         data = uz.urlencode(data).encode()
         req = ul.Request("https://backendtp.bqj.cn/a/login", data, headers)
@@ -214,18 +215,20 @@ class VerifyCopyrightPass:
         查询测试数据订单
         :return:
         """
-        data = {'authorName': '',
-                'endTime': '',
-                'endUpdateTime': '',
-                'memberStatus': '',
-                'orderSeqNo': '',
-                'pageNo': '1',
-                'pageSize': '20',
-                'startTime': '',
-                'startUpdateTime': '',
-                'terminal': '',
-                'userTye': '',
-                'workFullname': '1天内测试数据，勿动'}
+        data = {
+            'authorName': '',
+            'endTime': '',
+            'endUpdateTime': '',
+            'memberStatus': '',
+            'orderSeqNo': '',
+            'pageNo': '1',
+            'pageSize': '20',
+            'startTime': '',
+            'startUpdateTime': '',
+            'terminal': '',
+            'userTye': '',
+            'workFullname': '1天内测试数据，勿动'
+        }
         # Post的数据必须是bytes或者iterable of bytes，不能是str，因此需要进行encode（）编码
         data = uz.urlencode(data).encode()
         req = ul.Request("https://backendtp.bqj.cn/a/order/orderCommon/", data, headers)
@@ -262,15 +265,17 @@ class VerifyCopyrightPass:
         :return: 异常原因
         """
         try:
-            data = {'certType': 'all',
-                    'keyword': '',
-                    'period': 'all',
-                    'pageSize': '9',
-                    'pageNo': '1',
-                    'workType': 'all',
-                    'status': 'all',
-                    'loading': 'true',
-                    'registerId': self.get_registerId()}
+            data = {
+                'certType': 'all',
+                'keyword': '',
+                'period': 'all',
+                'pageSize': '9',
+                'pageNo': '1',
+                'workType': 'all',
+                'status': 'all',
+                'loading': 'true',
+                'registerId': self.get_registerId()
+            }
             rq = requests.post(self.url, data=data)
             result_text = rq.text
             # print(result)
