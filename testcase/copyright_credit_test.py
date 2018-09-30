@@ -17,7 +17,7 @@ class Test3CreateCopyrightCredit(myunit.MyTest, methods.CommonMethod, Login, Cre
     user1 = cf.get("correct_input1", "user")
     pwd1 = cf.get("correct_input1", "pwd")
 
-    @unittest.skip("跳过VIP")
+    @unittest.skip("跳过VIP创建版权存证")
     def test_vip_create_copyright_credit_success(self):
         """测试VIP创建版权存证成功"""
         self.user_login(self.user, self.pwd)
