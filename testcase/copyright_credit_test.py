@@ -25,13 +25,6 @@ class Test3CreateCopyrightCredit(myunit.MyTest, methods.CommonMethod, Login, Cre
         self.vip_user_create_copyright_credit()
         self.assertEqual('信息审核', self.get_application_finish_info())
 
-    def test_create_copyright_credit_success(self):
-        """注册用户测试创建版权存证成功"""
-        self.user_login(self.user1, self.pwd1)
-        self.click_copyright_credit_page()
-        self.user_create_copyright_credit()
-        self.assertEqual('信息审核', self.get_application_finish_info())
-
     @unittest.skip("跳过购买环节验证")
     def test_purchase_vip_success(self):
         """测试购买vip会员成功"""
@@ -41,6 +34,13 @@ class Test3CreateCopyrightCredit(myunit.MyTest, methods.CommonMethod, Login, Cre
         self.assertEqual('￥298', self.get_vip_purchase_price())
         self.click_confirm_pay_btn()
         self.get_screen_shoot("请完成支付页面", self.timestamp)
+
+    def test_create_copyright_credit_success(self):
+        """注册用户测试创建版权存证成功"""
+        self.user_login(self.user1, self.pwd1)
+        self.click_copyright_credit_page()
+        self.user_create_copyright_credit()
+        self.assertEqual('信息审核', self.get_application_finish_info())
 
 
 if __name__ == '__main__':
