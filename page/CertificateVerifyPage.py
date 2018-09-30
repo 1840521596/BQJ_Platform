@@ -330,6 +330,7 @@ class CertificateVerifyPage(Page):
         self.click_user_portrait()
         # self.get_screen_shoot("我的创作首页", self.timestamp)
         self.click_user_work()
+        self.refresh_current_page()
         # self.get_screen_shoot("作品详情页", self.timestamp)
         self.click_certificate_verify_btn()
         # self.get_screen_shoot("证书核验页", self.timestamp)

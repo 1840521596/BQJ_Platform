@@ -121,6 +121,16 @@ class Page(object):
     def save_screen_shoot(self, file):
         self.driver.save_screenshot(file)
 
+    def refresh_current_page(self):
+        """
+        刷新当前页面
+        :return:
+        """
+        try:
+            self.driver.refresh()
+        except Exception as msg:
+            return "异常原因%s" % msg
+
     def scroll_to_bottom(self):
         """
         滑动到底部
@@ -129,6 +139,7 @@ class Page(object):
         try:
             js = "var q=document.documentElement.scrollTop=100000"
             self.script(js)
+            time.sleep(2)
         except Exception as msg:
             return "异常原因%s" % msg
 

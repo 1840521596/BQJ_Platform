@@ -87,7 +87,7 @@ class CreateRealName(Page):
             return u"异常原因%s" % msg
 
     def create_real_name_verify(self):
-        self.get_screen_shoot('立即存证', self.timestamp)
+        # self.get_screen_shoot('立即存证', self.timestamp)
         self.click_client_detail_btn()
         # self.get_screen_shoot('未实名认证弹窗', self.timestamp)
         self.click_go_real_name_btn()

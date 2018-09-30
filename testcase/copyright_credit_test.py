@@ -17,6 +17,7 @@ class Test3CreateCopyrightCredit(myunit.MyTest, methods.CommonMethod, Login, Cre
     user1 = cf.get("correct_input1", "user")
     pwd1 = cf.get("correct_input1", "pwd")
 
+    @unittest.skip("跳过VIP")
     def test_vip_create_copyright_credit_success(self):
         """测试VIP创建版权存证成功"""
         self.user_login(self.user, self.pwd)
@@ -31,6 +32,7 @@ class Test3CreateCopyrightCredit(myunit.MyTest, methods.CommonMethod, Login, Cre
         self.user_create_copyright_credit()
         self.assertEqual('信息审核', self.get_application_finish_info())
 
+    @unittest.skip("跳过购买环节验证")
     def test_purchase_vip_success(self):
         """测试购买vip会员成功"""
         self.user_login(self.user1, self.pwd1)
