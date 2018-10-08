@@ -13,8 +13,8 @@ class Login(Page):
     username_loc = (By.ID, 'usernameInSignInForm')
     password_loc = (By.ID, 'passwordInSignInForm')
     image_code_loc = (By.NAME, 'imageCode')
-    original_img = path + r'\testImage\test.png'
-    image_path = path + r'\testImage\login.png'
+    original_img = path + r'/testImage/test.png'
+    image_path = path + r'/testImage/login.png'
     img_loc = 'dynamic_code_pw'
     bqj_login_url = u"https://passport.bqj.cn/sso/login?backurl=http%3A%2F%2Fwww.bqj.cn%2Fsso%2FafterLogin&sc=12589172"
     login_btn_loc = (By.CSS_SELECTOR, '#signInForm>input.form_btn')
@@ -63,6 +63,7 @@ class Login(Page):
         # 通过Image处理图像
         im = Image.open(self.original_img)
         im = im.crop((left, top, right, bottom))
+        # im = im.convert('RGB')
         im.save(self.image_path)
         img_str = pytesseract.image_to_string(Image.open(self.image_path))
         result = int(img_str[0]) + int(img_str[2])

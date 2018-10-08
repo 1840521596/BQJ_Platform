@@ -29,8 +29,8 @@ class Register(Page):
     show_error_loc = (By.CLASS_NAME, 'show_error')
     enter_main_loc = (By.CSS_SELECTOR, 'body>div>div>div>div>div>button')
     page_title = '注册'
-    original_img = path + r'\testImage\reg_test.png'
-    image_path = path + r'\testImage\reg_login.png'
+    original_img = path + r'/testImage/reg_test.png'
+    image_path = path + r'/testImage/reg_login.png'
 
     def open_url(self):
         self.verify_open(self.bqj_register_url, self.page_title)
@@ -151,6 +151,7 @@ class Register(Page):
         # 通过Image处理图像
         im = Image.open(self.original_img)
         im = im.crop((left, top, right, bottom))
+        # im = im.convert('RGB')
         im.save(self.image_path)
         img_str = pytesseract.image_to_string(Image.open(self.image_path))
         result = int(img_str[0]) + int(img_str[2])
