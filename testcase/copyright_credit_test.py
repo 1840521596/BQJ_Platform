@@ -25,9 +25,9 @@ class Test3CreateCopyrightCredit(myunit.MyTest, methods.CommonMethod, Login, Cre
         self.vip_user_create_copyright_credit()
         self.assertEqual('信息审核', self.get_application_finish_info())
 
-    @unittest.skip("跳过购买环节验证")
+    @unittest.skip("跳过VIP购买环节验证")
     def test_purchase_vip_success(self):
-        """测试购买vip会员成功"""
+        """测试VIP购买环节验证"""
         self.user_login(self.user1, self.pwd1)
         self.vip_user_create_copyright_credit()
         self.open_vip_user()
