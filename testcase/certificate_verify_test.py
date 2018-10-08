@@ -44,7 +44,7 @@ class Test4CertificateVerify(myunit.MyTest, methods.CommonMethod, Login, Certifi
 
     def test_certificate_content_verify(self):
         """测试证书内容核验"""
-        self.verify_copyright_pass()
+        # self.verify_copyright_pass()
         self.user_login(self.user1, self.pwd1)
         self.user_certificate_verify()
         self.assertEqual(self.cdData[0], self.sha256())

@@ -1,4 +1,6 @@
 # coding:utf-8
+import time
+
 from PIL import Image
 from pytesseract import *
 from common import methods
@@ -99,6 +101,7 @@ class Login(Page):
         # print(verify_code)
         self.type_input_verify_code(verify_code)
         self.click_login_btn()
+        time.sleep(3)
 
 
 
