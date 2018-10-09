@@ -102,7 +102,7 @@ class Login(Page):
         # print(verify_code)
         self.type_input_verify_code(verify_code)
         self.click_login_btn()
-        time.sleep(3)
+        time.sleep(5)
 
 
 

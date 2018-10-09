@@ -20,7 +20,7 @@ class Test4CertificateVerify(myunit.MyTest, methods.CommonMethod, Login, Certifi
     @unittest.skip('跳过VIP证书内容核验')
     def test_vip_certificate_content_verify(self):
         """测试VIP证书内容核验"""
-        self.verify_copyright_pass()
+        # self.verify_copyright_pass()
         self.user_login(self.user, self.pwd)
         self.user_certificate_verify()
         self.assertEqual(self.cdData[0], self.sha256())

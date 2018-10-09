@@ -399,5 +399,3 @@ class CertificateVerifyPage(Page):
         self.click_copyright_chain_block_btn()
         self.scroll_to_middle()
         self.get_screen_shoot("5.区块链核验截图", self.timestamp)
-
-
