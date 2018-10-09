@@ -115,7 +115,7 @@ class Page(object):
             print("%s 页面中未能找到%s元素" % (self, loc))
 
     def get_screen_shoot(self, file_name, time_stamp):
-        self.driver.get_screenshot_as_file(methods.project_path + '/image/%s %s.png ' % (file_name, time_stamp))
+        self.driver.get_screenshot_as_file(methods.project_path + '/image/%s %s.png' % (file_name, time_stamp))
         time.sleep(1)
 
     def save_screen_shoot(self, file):
@@ -195,7 +195,7 @@ class Page(object):
         handles = self.driver.window_handles
         for handle in handles:
             if handle != handles:
-                self.driver.switch_to_window(handle)
+                self.driver.switch_to.window(handle)
             continue
 
     def select_options(self, loc, text):
