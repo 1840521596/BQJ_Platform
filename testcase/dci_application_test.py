@@ -8,7 +8,7 @@ from page.DciApplicationPage import DciApplicationPage
 sys.path.append("./page")
 
 
-class Test4CertificateVerify(myunit.MyTest, methods.CommonMethod, Login, DciApplicationPage):
+class Test5DciApplication(myunit.MyTest, methods.CommonMethod, Login, DciApplicationPage):
     PATH = methods.project_path
     cf = configparser.ConfigParser()
     cf.read(PATH + "\\login_conf.ini")
