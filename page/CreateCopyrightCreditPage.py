@@ -66,7 +66,7 @@ class CreateCopyrightCredit(Page):
 
     def click_ant_upload_btn(self):
         """
-        上传测试图片
+        上传测试数据
         :return: 得到服务器返回的路径
         """
         try:
