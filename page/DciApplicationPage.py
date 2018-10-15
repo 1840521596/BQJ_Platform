@@ -16,9 +16,9 @@ class DciApplicationPage(Page):
     novel_work_loc = (By.CSS_SELECTOR, "#app > div.infoCheck > div.infoCenter > div:nth-child(5) > form > div.el-dialog__wrapper > div > div.el-dialog__body > div.limit-elUi.limit-elUi2 > form:nth-child(1) > div:nth-child(1) > div > button:nth-child(1) > span")
     confirm_btn_loc = (By.CSS_SELECTOR, '#app > div.infoCheck > div.infoCenter > div:nth-child(5) > form > div.el-dialog__wrapper > div > div.el-dialog__footer > span > button')
     time_loc = (By.CSS_SELECTOR, '#app > div.infoCheck > div.infoCenter > div:nth-child(7) > form > div:nth-child(1) > div > div > input')
-    select_available_today_loc = (By.CSS_SELECTOR, 'body > div.el-picker-panel.el-date-picker.el-popper > div.el-picker-panel__body-wrapper > div > div.el-picker-panel__content > table.el-date-table > tbody > tr:nth-child(3) > td.available.today')
+    select_available_today_loc = (By.CSS_SELECTOR, 'body > div.el-picker-panel.el-date-picker.el-popper > div.el-picker-panel__body-wrapper > div > div.el-picker-panel__content > table.el-date-table > tbody > tr:nth-child(4) > td.available.today')
     time_loc2 = (By.CSS_SELECTOR, '#app > div.infoCheck > div.infoCenter > div:nth-child(7) > form > div:nth-child(3) > div > div > input')
-    select_available_today_loc2 = (By.CSS_SELECTOR, 'body > div:nth-child(5) > div.el-picker-panel__body-wrapper > div > div.el-picker-panel__content > table.el-date-table > tbody > tr:nth-child(3) > td.available.today')
+    select_available_today_loc2 = (By.CSS_SELECTOR, 'body > div:nth-child(5) > div.el-picker-panel__body-wrapper > div > div.el-picker-panel__content > table.el-date-table > tbody > tr:nth-child(4) > td.available.today')
     creation_place_loc = (By.CSS_SELECTOR, '#app > div.infoCheck > div.infoCenter > div:nth-child(7) > form > div.el-form-item.citySelect.citySelect20.is-required > div > div:nth-child(1) > div > input')
     select_china_loc = (By.CSS_SELECTOR, 'body > div.el-select-dropdown.el-popper > div.el-scrollbar > div.el-select-dropdown__wrap.el-scrollbar__wrap > ul > li:nth-child(1)')
     provinces_loc = (By.CSS_SELECTOR, '#app > div.infoCheck > div.infoCenter > div:nth-child(7) > form > div.el-form-item.citySelect.citySelect20.is-required > div > div:nth-child(2) > div > input')
@@ -71,7 +71,7 @@ class DciApplicationPage(Page):
         """
         try:
             self.click(self.next_step_loc)
-            time.sleep(2)
+            time.sleep(1)
         except NoSuchElementException as msg:
             return "异常原因%s" % msg
 
@@ -82,7 +82,7 @@ class DciApplicationPage(Page):
         """
         try:
             self.click(self.work_type_loc)
-            time.sleep(3)
+            time.sleep(1)
         except NoSuchElementException as msg:
             return "异常原因%s" % msg
 
@@ -94,7 +94,7 @@ class DciApplicationPage(Page):
         try:
             self.click(self.novel_work_loc)
             self.scroll_to_bottom()
-            time.sleep(2)
+            time.sleep(1)
         except NoSuchElementException as msg:
             return "异常原因%s" % msg
 
@@ -119,6 +119,7 @@ class DciApplicationPage(Page):
             self.click(self.time_loc)
             time.sleep(1)
             self.click(self.select_available_today_loc)
+            time.sleep(1)
         except NoSuchElementException as msg:
             return "异常原因%s" % msg
 
