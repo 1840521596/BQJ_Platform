@@ -106,7 +106,7 @@ class CertificateVerifyPage(Page):
         try:
             self.type_input(self.type_check_num_loc, self.get_bqj_check_num())
             self.click(self.confirm_loc)
-            time.sleep(4)
+            time.sleep(5)
         except Exception as msg:
             return "异常原因%s" % msg
 
