@@ -84,21 +84,47 @@
 #
 #
 
-import json
+# import json
+#
+#
+# def json_out(indent=None, sort_keys=False):
+#     def actual_decorator(decorated):
+#         def inner(*arg, **kw):
+#             result = decorated(*arg, **kw)
+#             return json.dumps(result, indent=indent, sort_keys=sort_keys)
+#         return inner
+#     return actual_decorator
+#
+#
+# @json_out(indent=5)
+# def json_nothing():
+#     return {'a': 2, "b": 3}
+#
+#
+# print(json_nothing())
 
 
-def json_out(indent=None, sort_keys=False):
-    def actual_decorator(decorated):
-        def inner(*arg, **kw):
-            result = decorated(*arg, **kw)
-            return json.dumps(result, indent=indent, sort_keys=sort_keys)
-        return inner
-    return actual_decorator
+def reverse(x):
+    if -10 < x < 10:
+        return x
+    n = abs(x)  # 都按正数进行操作
+    str1 = str(n)
+    if len(str1) > 10:
+        return 0
+
+    v = ''
+    for i in range(len(str1)):
+        v += str1[-(i + 1)]
+    result = int(v)
+    if x < 0:
+        result = -result
+    if -2147483648 < result < 2147483647:
+        return result
+    else:
+        return 0
 
 
-@json_out(indent=5)
-def json_nothing():
-    return {'a': 2, "b": 3}
-
-
-print(json_nothing())
+if __name__ == '__main__':
+    print("请输入数字：")
+    x = int(input())
+    print(reverse(x))
