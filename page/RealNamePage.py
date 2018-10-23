@@ -9,7 +9,7 @@ from selenium.webdriver.common.by import By
 
 class CreateRealName(Page):
     client_detail_loc = (By.CLASS_NAME, 'client_detail_btn')
-    go_real_name_loc = (By.CSS_SELECTOR, 'body>div:nth-child(14)>div>div.ant-modal-wrap>div>div.ant-modal-content>div.ant-modal-body>div>a>button')
+    go_real_name_loc = (By.CSS_SELECTOR, 'body > div:nth-child(13) > div > div.ant-modal-wrap > div > div.ant-modal-content > div.ant-modal-body > div > a > button')
     upload_front_loc = (By.CSS_SELECTOR, '#root>div>div>div>div.account.clearfix>div.account-content>div>div>div:nth-child(2)>div>div>div:nth-child(2)>div.ant-col-18>div:nth-child(1)>div>span>div')
     upload_back_loc = (By.CSS_SELECTOR, '#root>div>div>div>div.account.clearfix>div.account-content>div>div>div:nth-child(2)>div>div>div:nth-child(2)>div.ant-col-18>div:nth-child(2)>div>span>div')
     quick_auth_btn = (By.XPATH, '//*[@id="root"]/div/div/div/div[2]/div[2]/div/div/div[2]/div/div/div[5]/button')
