@@ -15,7 +15,7 @@ class CertificateVerifyPage(Page):
     img_container_loc = (By.CSS_SELECTOR, '#root>div>div>div>div.account.clearfix>div.account-content>div>section>ul>li>div>div:nth-child(2)>div')
     certificate_verify_loc = (By.CSS_SELECTOR, '#root > div > div > div > div.content > div > div.detailsLeftBox > div.content > section > div:nth-child(4) > div > div > article:nth-child(1) > div.creation-details-certificate-info > div > div > a:nth-child(2) > button')
     type_check_num_loc = (By.CSS_SELECTOR, '#code')
-    confirm_loc = (By.CSS_SELECTOR, 'body > div:nth-child(13) > div > div.ant-modal-wrap > div > div.ant-modal-content > div > div > form > button > span')
+    confirm_loc = (By.CSS_SELECTOR, 'body > div:nth-child(14) > div > div.ant-modal-wrap > div > div.ant-modal-content > div > div > form > button > span')
     verify_value_loc = (By.XPATH, '//*[@id="public_text"]')
     copy_content_loc = (By.CSS_SELECTOR, '#root > div > div > div > div.ordercommon > div.vmain-content > div:nth-child(2) > div:nth-child(7) > div.marginLeft60 > button')
     confirm_copy_content_loc = (By.CSS_SELECTOR, 'body > div:nth-child(14) > div > div.ant-modal-wrap > div > div.ant-modal-content > div.ant-modal-body > div.text-center.margin15.margin-top-60 > button')
