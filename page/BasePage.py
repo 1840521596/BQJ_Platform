@@ -101,7 +101,7 @@ class Page(object):
 
     def type_input(self, loc, text):
         try:
-            WebDriverWait(self.driver, 3).until(EC.visibility_of_element_located(loc))
+            WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(loc))
             self.find_element(*loc).clear()
             self.find_element(*loc).send_keys(text)
         except AssertionError:
@@ -109,7 +109,7 @@ class Page(object):
 
     def click(self, loc):
         try:
-            WebDriverWait(self.driver, 3).until(EC.visibility_of_element_located(loc))
+            WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(loc))
             self.driver.find_element(*loc).click()
         except AssertionError:
             print("%s 页面中未能找到%s元素" % (self, loc))
